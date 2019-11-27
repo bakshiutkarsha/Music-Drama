@@ -2,12 +2,23 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
-const libRoute = require('./routes/lib');
+const reviewRoute = require('./routes/review');
+const authRoute = require('./routes/auth');
+const songRoute = require('./routes/song');
 const cors = require('cors');
+const path = require('path');
+const middleware = require(./'middleware')
 require('dotenv/config');
+const authKey = process.env.SECRET_KEY;
+
+//CHECK FOR SECRET KEY
+if (typeof authKey === 'undefined') { // If not set, exit immediately
+	console.log("Please set secret as environment variable. E.g. JWT_KEY=\"Open Sesame\" node index");
+	process.exit(1);
+}
 
 //MONGODB CONNECTION
-mongoose.connect('mongodb+srv://utkarsha:FqqUUosi9fQ1GW5O@librarydatabase-3ekhb.mongodb.net/test?retryWrites=true&w=majority', {useUnifiedTopology: true,
+mongoose.connect(process.env.DB_CONNECTION, {useUnifiedTopology: true,
 useNewUrlParser: true})
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
@@ -16,9 +27,14 @@ useNewUrlParser: true})
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use(express.static('public'));
 
-app.use('/library', libRoute);
+// app.use(express.static(path.join(__dirname, '../src')));
+app.use(express.static('../src'));
+app.use('/auth', authRoute);
+app.get('/', middleware.checkToken);
+app.use('/reviews', reviewRoute);
+app.use('/songs', songRoute);
+
 
 
 // catch 404 and forward to error handler
@@ -30,7 +46,6 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  console.log(req.body);
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = err;
