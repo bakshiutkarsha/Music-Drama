@@ -24,7 +24,7 @@ router.get('/items/:itemId', async (req, res) => {
 });
 
 //SAVE LIBRARY ITEM
-router.post('/songs', async (req, res) => {
+router.post('/', async (req, res) => {
   const item = new song({
     submitted_by  : req.body.submitted_by,
     submitted_on :req.body.submitted_on,
@@ -39,7 +39,7 @@ router.post('/songs', async (req, res) => {
 
   try{
     const savedItem = await item.save();
-    res.json(savedItem);
+    res.sendStatus(200).json(savedItem);
   } catch(err){
     res.json({message :err});
   }

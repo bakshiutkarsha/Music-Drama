@@ -7,7 +7,7 @@ const authRoute = require('./routes/auth');
 const songRoute = require('./routes/song');
 const cors = require('cors');
 const path = require('path');
-const middleware = require(./'middleware')
+const middleware = require('./middleware');
 require('dotenv/config');
 const authKey = process.env.SECRET_KEY;
 
@@ -31,7 +31,8 @@ app.use(bodyParser.json());
 // app.use(express.static(path.join(__dirname, '../src')));
 app.use(express.static('../src'));
 app.use('/auth', authRoute);
-app.get('/', middleware.checkToken);
+
+app.use('/', middleware.checkToken);
 app.use('/reviews', reviewRoute);
 app.use('/songs', songRoute);
 
