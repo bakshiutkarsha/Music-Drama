@@ -1,15 +1,27 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  postSomething(){
-    return this.http.post('http://localhost:3000/auth/new', {
-      
-    })
+  createHeaderOptions(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRhbmR5MDkiLCJhZG1pbiI6ZmFsc2UsImlhdCI6MTU3NDgzMzQxNX0.zqUf8tjrZpEEnH7fZd30pLoKTa48MO-qWaEbXtqqF2E'
+      })
+    };
+    return httpOptions;
+  }
+
+  getAllSongs() {
+    return this.http.get('http://localhost:3000/songs/getAllSongs', {
+      headers: this.createHeaderOptions().headers
+    });
   }
 }

@@ -4,9 +4,9 @@ const some = express();
 const song =  require('../models/song');
 
 // GET ALL ITEMS
-router.get('/items', async (req, res) => {
+router.get('/getAllSongs', async (req, res) => {
   try{
-    const items = await lib.find();
+    const items = await song.find();
     res.json(items);
   } catch(err){
     res.json({message :err});

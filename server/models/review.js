@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const ReviewSchema = mongoose.Schema({
-  avg_rating: {
+  {
+    avg_rating: {
     type: Number,
     required: true
   },
@@ -22,8 +23,9 @@ const ReviewSchema = mongoose.Schema({
   },
   song_id:{
     type: String,
-    required: true
+    required: false
   }
+}
 
 });
 

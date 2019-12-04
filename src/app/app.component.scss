@@ -1,0 +1,25 @@
+.home-cntr{
+  background: url(/assets/images/music-cover.png) no-repeat 50% 23% fixed;
+  background-size: cover;
+  height: 50%;
+  color: #fff;
+  border-bottom-right-radius: 80pc;
+  .top-banner{
+    padding: 30px;
+    .left-portion{
+      display: inline-block;
+      width: 50%;
+      font-size: 25px;
+      word-spacing: 5px;
+    }
+    .right-portion{
+      display: inline-block;
+      text-align: right;
+      width: 50%;
+      p{
+        display: inline-block;
+        margin-right: 20px;
+      }
+    }
+  }
+}

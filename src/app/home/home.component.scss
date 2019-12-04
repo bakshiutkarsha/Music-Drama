@@ -1,0 +1,27 @@
+.about-section{
+  padding: 30px 90px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  word-spacing: 2px;
+  font-size: 18px;
+  section{
+
+    padding: 40px;
+    i{
+      font-size: 40px;
+      color: #f1788d;
+      padding-bottom: 20px;
+    }
+    p{
+      &:first-child{
+        font-weight: bold;
+      }
+      &:last-child{
+        color: #6f6f6f;
+        padding-top: 7px;
+      }
+    }
+    // flex: 2;
+  }
+}
