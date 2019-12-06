@@ -19,4 +19,8 @@ export class SongsComponent implements OnInit {
     });
   }
 
+  selectRandom(){
+    return `/assets/images/random-${Math.floor(Math.random() * 5) + 1}.png`;
+  }
+
 }

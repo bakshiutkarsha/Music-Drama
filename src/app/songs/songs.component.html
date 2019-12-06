@@ -1,1 +1,24 @@
-<p>songs works!</p>
+<div class="song-component-cntr">
+  <!-- <div class="giphy">
+    <img src="/assets/images/200.webp" alt="">
+  </div> -->
+  <div class="song-section">
+    <p class="head-txt">Global Top 10</p>
+    <div class="song-list-cntr">
+      <div *ngIf="songList">
+        <div *ngFor="let song of songList">
+          <div class="each-song">
+            <div class="img-cntr">
+              <img src={{selectRandom()}} alt="">
+            </div>
+            <div class="song-info">
+                <p class="">{{song.submitted_by}}</p>
+                <p class="">{{song.genre}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

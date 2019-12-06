@@ -1,0 +1,42 @@
+.song-component-cntr{
+  font-family: 'Didact Gothic', sans-serif;
+  padding: 30px;
+  background: #f3f3f3;
+  .song-section{
+    width: 60%;
+    .head-txt{
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .song-list-cntr{
+      padding: 20px 10px;
+      .each-song{
+        background: #fff;
+        padding: 15px;
+        border-radius: 3px;
+        margin-bottom: 15px;
+        .img-cntr{
+          display: inline-block;
+          vertical-align: top;
+          padding-right: 20px;
+          width: 50px;
+          img{
+            width: inherit;
+          }
+        }
+        .song-info{
+          display: inline-block;
+          p:first-child{
+            font-size: 20px;
+            font-weight: bold;
+          }
+          p:last-child{
+            font-size: 14px;
+            color: #a7a4a4;
+          }
+
+        }
+      }
+    }
+  }
+}
