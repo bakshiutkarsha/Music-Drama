@@ -1,0 +1,9 @@
+<div class="review-cntr">
+  <div *ngIf="reviewList">
+    <div *ngFor="let review of reviewList" class="each-review-cntr">
+      <p class="reviewer">{{review.submitted_by}}</p>
+      <div class="review-text">
+        <span>{{review.review_text}}</span>
+    </div>
+  </div>
+</div>

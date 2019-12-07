@@ -1,0 +1,19 @@
+.review-cntr{
+  .each-review-cntr{
+    padding: 30px;
+    background: #ea9a9a;
+    .reviewer{
+      font-size: 30px;
+    }
+    .review-text{
+      border-left: 2px solid #000;
+      padding: 10px 0;
+      span{
+          padding-left: 10px;
+      }
+    }
+    &:nth-child(even){
+      background: #fff;
+    }
+  }
+}

@@ -40,3 +40,29 @@
     }
   }
 }
+
+.extra-detail-cntr{
+  &.collapsed{
+    display: none;
+  }
+  &.exapnded{
+    display: block;
+  }
+}
+
+
+input {
+  width: 100%;
+  /* padding: 12px 0; */
+  padding-top: 7px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  border: none;
+  border-bottom: 1px solid #bebeea;
+  outline: none;
+  font-size: 14px;
+  color: #4a4a4a;
+  .input-cntr-each {
+    margin-bottom: 20px;
+  }
+}

@@ -3,11 +3,11 @@ const router = express.Router();
 const some = express();
 const review =  require('../models/review');
 
-// GET ALL ITEMS
-router.get('/reviews', async (req, res) => {
+// GET ALL REVIEW FOR A SONG
+router.get('/getReviewForSong/:songId', async (req, res) => {
   try{
-    const items = await review.find();
-    res.json(items);
+    const reviews = await review.find({song_id:req.params.songId});
+    res.json(reviews);
   } catch(err){
     res.json({message :err});
   }
@@ -24,19 +24,18 @@ router.get('/items/:itemId', async (req, res) => {
 });
 
 //SAVE REVIEW
-router.post('/reviews', async (req, res) => {
-  const item = new review({
+router.post('/postReviewForsong', async (req, res) => {
+  const review = new review({
     submitted_by  : req.body.submitted_by,
     submitted_on :req.body.submitted_on,
     review_text  :req.body.review_text,
     rating  :req.body.rating,
-    avg_rating: req.body.avg_rating,
     song_id: req.body.song_id
   });
 
   try{
-    const savedItem = await item.save();
-    res.json(savedItem);
+    const savedReview = await review.save();
+    res.json(savedReview);
   } catch(err){
     console.log(err);
     res.json({message :err});

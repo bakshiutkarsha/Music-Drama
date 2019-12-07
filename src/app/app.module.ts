@@ -7,13 +7,15 @@ import { SongsComponent } from './songs/songs.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SongsComponent,
-    HomeComponent
+    HomeComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,

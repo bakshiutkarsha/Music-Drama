@@ -7,18 +7,56 @@
     <div class="song-list-cntr">
       <div *ngIf="songList">
         <div *ngFor="let song of songList">
-          <div class="each-song">
-            <div class="img-cntr">
+          <div class="each-song" [routerLink]="[song._id, 'review']" [attr.data-song-id]="song._id">
+            <!-- <div class="img-cntr">
               <img src={{selectRandom()}} alt="">
-            </div>
+            </div> -->
             <div class="song-info">
-                <p class="">{{song.submitted_by}}</p>
+                <p class="">{{song.song_title}}</p>
                 <p class="">{{song.genre}}</p>
+            </div>
+            <div class="start-cntr" id="star-cntr">
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <div class="collapsed" (click)="toggleAccordian()">
+              arrow
+            </div>
+            <div class="extra-detail-cntr collapsed">
+              <div class="extra-details">
+                <p>Genre: {{song.genre}}</p>
+                <p>Year: {{song.year}}</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+
+</div>
+
+<div class="add-song-cntr">
+  <div class="input-cntr">
+    <div class="input-cntr-each">
+      <label for="">Item Name :</label>
+      <input type="text" name="" id="new-name">
+    </div>
+
+    <div class="input-cntr-each">
+      <label for="">Item Loan Period in Days (Optional) :</label>
+      <input type="number" name="" id="new-date">
+    </div>
+
+    <div class="input-cntr-each">
+      <label for="">Quantity (Optional) :</label>
+      <input type="number" name="" id="new-quantity">
+    </div>
+
+
   </div>
 
 </div>

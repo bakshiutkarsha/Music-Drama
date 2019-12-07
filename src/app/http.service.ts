@@ -24,4 +24,12 @@ export class HttpService {
       headers: this.createHeaderOptions().headers
     });
   }
+
+  getSongReview(songId) {
+    let url = 'http://localhost:3000/reviews/getReviewForSong/:songId';
+    let urlWithId = url.replace(':songId', songId);
+    return this.http.get(urlWithId, {
+      headers: this.createHeaderOptions().headers
+    });
+  }
 }
