@@ -9,7 +9,11 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { AddSongComponent } from './add-song/add-song.component';
-import { ModalComponent } from './modal/modal.component';
+// import { ModalComponent } from './modal/modal.component';
+import {  ModalModule } from './modal/modal.module';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+
 
 
 @NgModule({
@@ -19,13 +23,16 @@ import { ModalComponent } from './modal/modal.component';
     HomeComponent,
     ReviewsComponent,
     AddSongComponent,
-    ModalComponent
+    LoginComponent
+    // ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    ModalModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

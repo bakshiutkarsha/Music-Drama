@@ -7,7 +7,7 @@
 html,body{
   width: 100%;
   height: 100%;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: "Didact Gothic", sans-serif;
 }
 .add-cntr, .add-btn, .edit-cntr {
   display: inline-block;
@@ -21,6 +21,7 @@ html,body{
   -moz-box-shadow: 5px 3px 14px -3px rgba(87, 87, 87, 1);
   box-shadow: 5px 3px 14px -3px rgba(87, 87, 87, 1);
   cursor: pointer;
+  margin-top: 20px;
 }
 
 .edit-cntr {
@@ -34,4 +35,46 @@ html,body{
   padding: 0px 5px;
   margin-left: 5px;
   font-family: sans-serif;
+}
+
+input {
+  width: 100%;
+  padding: 12px 0; 
+  box-sizing: border-box;
+  border-radius: 2px;
+  border: none;
+  border-bottom: 1.5px solid #bebeea;
+  outline: none;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  color: #4a4a4a;
+  // &:focus{
+  //   border-bottom: 1.5px solid red;
+  // }
+}
+
+.input-cntr{
+  padding: 30px;
+  font-family: "Didact Gothic", sans-serif;
+  label{
+    font-size: 18px;
+  }
+  .input-cntr-each {
+    margin-bottom: 20px;
+    span{
+      color: #c71919;
+    }
+  }
+  .divider{
+    // display: inline-block;
+    // width: 50%;
+    .col-width-50{
+      display: inline-block;
+      width: 30%;
+      margin-left: 2%;
+      &:first-child{
+        margin-left: 0;
+      }
+    }
+  }
 }

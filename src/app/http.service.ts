@@ -19,6 +19,8 @@ export class HttpService {
     return httpOptions;
   }
 
+
+  //OPTIMIZE URLS, POST, GET
   getAllSongs() {
     return this.http.get('http://localhost:3000/songs/getAllSongs', {
       headers: this.createHeaderOptions().headers
@@ -32,4 +34,20 @@ export class HttpService {
       headers: this.createHeaderOptions().headers
     });
   }
+
+  postReviewForSong(postData){
+    let url = 'http://localhost:3000/reviews/postReviewForsong';
+    return this.http.post(url, postData, {
+      headers: this.createHeaderOptions().headers
+    });
+  }
+
+  postNewSong(postData){
+    let url = 'http://localhost:3000/songs/createNewSong';
+    return this.http.post(url, postData, {
+      headers: this.createHeaderOptions().headers
+    });
+  }
+
+
 }
