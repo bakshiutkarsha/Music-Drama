@@ -11,11 +11,13 @@ import { ActivatedRoute } from '@angular/router';
 export class ReviewsComponent implements OnInit {
   reviewList: Object;
 
+  id: String;
+
   constructor(private _http: HttpService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let songIdFromParams = this.route.params.id;
-    this._http.getSongReview(songIdFromParams).subscribe(data => {
+  this.id =  this.route.snapshot.paramMap.get('id');
+    this._http.getSongReview(this.id).subscribe(data => {
       this.reviewList = data;
     }, (err) => {
       console.log(err);

@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
 import { ReviewsComponent } from './reviews/reviews.component';
+import { AddSongComponent } from './add-song/add-song.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { ReviewsComponent } from './reviews/reviews.component';
     AppComponent,
     SongsComponent,
     HomeComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    AddSongComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

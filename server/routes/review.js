@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const some = express();
 const review =  require('../models/review');
+const song = require('../models/song');
 
 // GET ALL REVIEW FOR A SONG
 router.get('/getReviewForSong/:songId', async (req, res) => {
@@ -25,7 +26,7 @@ router.get('/items/:itemId', async (req, res) => {
 
 //SAVE REVIEW
 router.post('/postReviewForsong', async (req, res) => {
-  const review = new review({
+  const newReview = new review({
     submitted_by  : req.body.submitted_by,
     submitted_on :req.body.submitted_on,
     review_text  :req.body.review_text,
@@ -34,13 +35,23 @@ router.post('/postReviewForsong', async (req, res) => {
   });
 
   try{
-    const savedReview = await review.save();
+    const savedReview = await newReview.save();
     res.json(savedReview);
   } catch(err){
     console.log(err);
     res.json({message :err});
   }
 
+  review.aggregate([
+      {$group : {
+              _id: newReview.song_id,
+              avg_rating : { "$avg": "$rating" }
+          }
+      }
+  ], function(err, results) {
+    // const selectedSong = await song.findById(results._id);
+    // console.log(selectedSong);
+  });
 });
 
 //DELETE AN ITEM
@@ -63,4 +74,5 @@ router.patch('/items/:itemId', async (req, res) => {
     res.json({message :err});
   }
 });
+
 module.exports = router;

@@ -9,3 +9,29 @@ html,body{
   height: 100%;
   font-family: 'Open Sans Condensed', sans-serif;
 }
+.add-cntr, .add-btn, .edit-cntr {
+  display: inline-block;
+  /* float: right; */
+  background: #3a8e1f;
+  letter-spacing: 0.2px;
+  color: #fff;
+  padding: 7px 15px;
+  border-radius: 2px;
+  -webkit-box-shadow: 5px 3px 14px -3px rgba(87, 87, 87, 1);
+  -moz-box-shadow: 5px 3px 14px -3px rgba(87, 87, 87, 1);
+  box-shadow: 5px 3px 14px -3px rgba(87, 87, 87, 1);
+  cursor: pointer;
+}
+
+.edit-cntr {
+  background: #5858d2;
+}
+
+.add-cntr span {
+  background: #fff;
+  color: #3a8e1f;
+  border-radius: 11px;
+  padding: 0px 5px;
+  margin-left: 5px;
+  font-family: sans-serif;
+}

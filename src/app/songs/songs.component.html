@@ -15,12 +15,8 @@
                 <p class="">{{song.song_title}}</p>
                 <p class="">{{song.genre}}</p>
             </div>
-            <div class="start-cntr" id="star-cntr">
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
+            <div class="star-cntr" id="star-cntr">
+              <i class="fa fa-star"></i>  {{song.avg_rating}}/5
             </div>
             <div class="collapsed" (click)="toggleAccordian()">
               arrow
@@ -35,28 +31,6 @@
         </div>
       </div>
     </div>
-  </div>
-
-</div>
-
-<div class="add-song-cntr">
-  <div class="input-cntr">
-    <div class="input-cntr-each">
-      <label for="">Item Name :</label>
-      <input type="text" name="" id="new-name">
-    </div>
-
-    <div class="input-cntr-each">
-      <label for="">Item Loan Period in Days (Optional) :</label>
-      <input type="number" name="" id="new-date">
-    </div>
-
-    <div class="input-cntr-each">
-      <label for="">Quantity (Optional) :</label>
-      <input type="number" name="" id="new-quantity">
-    </div>
-
-
   </div>
 
 </div>

@@ -1,4 +1,8 @@
 const mongoose = require('mongoose');
+const review = require('./review');
+const mongoose_fuzzy_searching = require('mongoose-fuzzy-searching');
+
+mongoose.set('debug', true);
 const SongSchema = mongoose.Schema({
     song_title: {
       type: String,
@@ -30,11 +34,17 @@ const SongSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    playlist_name:{
-      type: String,
+    avg_rating:{
+      type: Number,
       required: false
     }
 
 });
-
+SongSchema.index({
+  song_title: 'text',
+  artist: 'text',
+  album: 'text',
+  genre: 'text',
+  year: 'number'
+})
 module.exports = mongoose.model('Songs', SongSchema);

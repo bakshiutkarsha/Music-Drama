@@ -1,0 +1,42 @@
+input {
+  width: 100%;
+  /* padding: 12px 0; */
+  padding-top: 7px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  border: none;
+  border-bottom: 1.5px solid #bebeea;
+  outline: none;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  color: #4a4a4a;
+  // &:focus{
+  //   border-bottom: 1.5px solid red;
+  // }
+}
+
+.input-cntr{
+  padding: 30px;
+  font-family: "Didact Gothic", sans-serif;
+  label{
+    font-size: 18px;
+  }
+  .input-cntr-each {
+    margin-bottom: 20px;
+    span{
+      color: #c71919;
+    }
+  }
+  .divider{
+    // display: inline-block;
+    // width: 50%;
+    .col-width-50{
+      display: inline-block;
+      width: 30%;
+      margin-left: 2%;
+      &:first-child{
+        margin-left: 0;
+      }
+    }
+  }
+}
