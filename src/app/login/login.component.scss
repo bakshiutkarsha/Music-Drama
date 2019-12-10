@@ -1,0 +1,38 @@
+.sign-in-cntr {
+  width: 30%;
+  margin: 20px auto;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 6px 6px 16px 7px rgba(240, 240, 241, 1);
+  -webkit-box-shadow: 6px 6px 16px 7px rgba(240, 240, 241, 1);
+  -moz-box-shadow: 6px 6px 16px 7px rgba(240, 240, 241, 1);
+  p{
+    padding: 30px 20px;
+    color: #fff;
+    background: #5858d2;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    letter-spacing: 0.5px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background-image: -webkit-linear-gradient(229deg, #5858d2 16%, #36215a 64%);
+  }
+  .checkout{
+    display: block;
+    margin: 10px 0;
+    width: 100px;
+    border-radius: 40px;
+    font-size: 16px;
+    padding: 12px;
+    background: #36215a;
+    color: #fff;
+    text-align: center;
+  }
+  .input-cntr{
+    padding: 15px;
+  }
+  .details{
+    padding: 15px;
+  }
+}

@@ -34,6 +34,16 @@ router.post('/postReviewForsong', async (req, res) => {
     song_id: req.body.song_id
   });
 
+  review.aggregate([
+      {$group : {
+              _id: req.body.song_id,
+              avg_rating : { "$avg": "$rating" }
+          }
+      }
+  ], async function(err, results) {
+      const  updateRating = await song.updateOne({_id: results[0]._id}, {$set: {avg_rating: results[0].avg_rating.toFixed(1)}});
+  });
+
   try{
     const savedReview = await newReview.save();
     res.json(savedReview);
@@ -42,16 +52,7 @@ router.post('/postReviewForsong', async (req, res) => {
     res.json({message :err});
   }
 
-  review.aggregate([
-      {$group : {
-              _id: newReview.song_id,
-              avg_rating : { "$avg": "$rating" }
-          }
-      }
-  ], function(err, results) {
-    // const selectedSong = await song.findById(results._id);
-    // console.log(selectedSong);
-  });
+
 });
 
 //DELETE AN ITEM

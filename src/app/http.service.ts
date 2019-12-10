@@ -49,5 +49,19 @@ export class HttpService {
     });
   }
 
+  searchSongs(searchData){
+    let url = 'http://localhost:3000/songs/search';
+    return this.http.post(url, searchData, {
+      headers: this.createHeaderOptions().headers
+    });
+  }
+
+  authenticateUser(postData){
+    let url = 'http://localhost:3000/auth/validate';
+    return this.http.post(url, postData, {
+      headers: this.createHeaderOptions().headers
+    });
+  }
+
 
 }

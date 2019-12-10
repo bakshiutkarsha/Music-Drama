@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const review = require('./review');
 const mongoose_fuzzy_searching = require('mongoose-fuzzy-searching');
 
-mongoose.set('debug', true);
+// mongoose.set('debug', true);
 const SongSchema = mongoose.Schema({
     song_title: {
       type: String,

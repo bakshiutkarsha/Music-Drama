@@ -5,11 +5,9 @@
   <div class="right-portion">
     <p routerLink="songs">Songs</p>
     <p routerLink=""> About</p>
-    <p class="login" routerLink="login">Login/Register</p>
+    <p class="login" routerLink="login" (loginUserHead)='changeToUserName($event)'>Login/Register</p>
   </div>
 </div>
-
-
 
 
 <router-outlet></router-outlet>

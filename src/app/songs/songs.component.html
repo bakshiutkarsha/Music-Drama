@@ -3,23 +3,34 @@
     <img src="/assets/images/200.webp" alt="">
   </div> -->
   <div class="song-section">
-    <p class="head-txt">Global Top 10</p>
+    <div class="head-txt">Global Top 10
+      <div class="search-cntr">
+        <input type="text" name="" value="" placeholder="Search song, artsit, genre " class="search" [(ngModel)]='searchText'>
+        <i class="fa fa-search" (click) = "searchWithKeywords()"></i>
+      </div>
+
+    </div>
     <div class="song-list-cntr">
       <div *ngIf="songList">
         <div *ngFor="let song of songList">
-          <div class="each-song" [routerLink]="[song._id, 'review']" [attr.data-song-id]="song._id">
+          <div class="each-song"  [routerLink]="[song._id, 'review']" [attr.data-song-id]="song._id">
             <!-- <div class="img-cntr">
               <img src={{selectRandom()}} alt="">
             </div> -->
             <div class="song-info">
-                <p class="">{{song.song_title}}</p>
-                <p class="">{{song.genre}}</p>
+                <p class="song-title">{{song.song_title}} <span>({{song.year}})</span></p>
+                <div class="song-attribute-details">
+                  <span>BY: {{song.artist}}</span>
+                  <span>ALBUM: {{song.album}}</span>
+                  <span>GENRE: {{song.genre}}</span>
+                </div>
             </div>
+
             <div class="star-cntr" id="star-cntr">
-              <i class="fa fa-star"></i>  {{song.avg_rating}}/5
+              <i class="fa fa-star"></i>  {{song.avg_rating}}<span>/5</span>
             </div>
-            <div class="collapsed" (click)="toggleAccordian()">
-              arrow
+            <div class="collapsed know-more" (click)="toggleAccordian()">
+              Know More
             </div>
             <div class="extra-detail-cntr collapsed">
               <div class="extra-details">

@@ -47,7 +47,8 @@ router.post('/validate', async (req, res) => {
   const userDetails = await user.findOne({
     username: req.body.username
   });
-  if(userDetails.is_active == false){
+
+  if(userDetails && userDetails.is_active == "true"){
     try {
       if (await argon2.verify(userDetails.hash, req.body.password)) {
         let payload = {
@@ -55,14 +56,13 @@ router.post('/validate', async (req, res) => {
           "admin": false
         };
         let token = jwt.sign(payload, authKey);
-        res.json(token);
+        res.json({"token": token, "userId": userDetails._id, "email": req.body.username});
       } else {
         res.sendStatus(400).json({
           message: "Password don't Match"
         });
       }
     } catch (err) {
-      console.log('i am here and err', err);
       res.json({
         message: err
       });

@@ -10,14 +10,20 @@ export class SongsComponent implements OnInit {
 
   songList: Object;
 
+  searchText: String;
+
   constructor(private _http: HttpService) { }
 
   ngOnInit() {
-    console.log('here');
-    this._http.getAllSongs().subscribe(data => {
-      this.songList = data;
-    });
-    //this.populateRating(4);
+    if(this.searchText){
+      this._http.searchSongs({"keyword": this.searchText}).subscribe(data => {
+        this.songList = data;
+      });
+    } else {
+      this._http.getAllSongs().subscribe(data => {
+        this.songList = data;
+      });
+    }
   }
 
 
@@ -25,7 +31,7 @@ export class SongsComponent implements OnInit {
     return `/assets/images/random-${Math.floor(Math.random() * 5) + 1}.png`;
   }
 
-  toggleAccordian(event) {
+  toggleAccordian() {
     if (event.target.classList.contains('expanded')) {
         event.target.nextElementSibling.classList.remove('expanded');
         event.target.nextElementSibling.classList.add('collapsed');
@@ -41,11 +47,9 @@ export class SongsComponent implements OnInit {
     }
   }
 
-
-  // @ViewChild('starRef') starRef: ElementRef;
-  // ngAfterViewInit() {
-  //   console.log(this);
-  // }
+  searchWithKeywords(){
+    this.ngOnInit();
+  }
 
   populateRating(rating){
     let starCntr = document.getElementById('star-cntr');
@@ -55,7 +59,5 @@ export class SongsComponent implements OnInit {
       allStar[i].classList.add('fa-star');
     }
   }
-  // resetState(){
-  //
-  // }
+
 }

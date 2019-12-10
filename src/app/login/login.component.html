@@ -1,1 +1,20 @@
-<p>login works!</p>
+<div class="user-info-cntr" id="user-info-cntr">
+  <div class="sign-in-cntr">
+    <p>Sign In </p>
+    <div class="details">
+      <div class="input-cntr">
+        <input type="email" placeholder="Email" maxlength="20" id="email" [(ngModel)]="email">
+        <div class="error hide">Please enter the valid email</div>
+      </div>
+
+      <div class="input-cntr">
+        <input type="password" placeholder="Enter Password" id="password" [(ngModel)]="password">
+        <div class="error hide">Please enter the year between 1900 and current year</div>
+      </div>
+
+      <div class="checkout" id="login" (click)=loginUser()>
+        Log in
+      </div>
+    </div>
+  </div>
+</div>
