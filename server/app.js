@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const reviewRoute = require('./routes/review');
 const authRoute = require('./routes/auth');
 const songRoute = require('./routes/song');
+const playlistRoute = require('./routes/playlist');
 const cors = require('cors');
 const path = require('path');
 const middleware = require('./middleware');
@@ -35,8 +36,7 @@ app.use('/auth', authRoute);
 app.use('/', middleware.checkToken);
 app.use('/reviews', reviewRoute);
 app.use('/songs', songRoute);
-
-
+app.use('/playlist', playlistRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

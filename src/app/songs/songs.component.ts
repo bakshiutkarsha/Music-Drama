@@ -31,7 +31,7 @@ export class SongsComponent implements OnInit {
     return `/assets/images/random-${Math.floor(Math.random() * 5) + 1}.png`;
   }
 
-  toggleAccordian() {
+  toggleAccordian(event) {
     if (event.target.classList.contains('expanded')) {
         event.target.nextElementSibling.classList.remove('expanded');
         event.target.nextElementSibling.classList.add('collapsed');

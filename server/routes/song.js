@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const some = express();
 const song = require('../models/song');
 
 // GET ALL SONGS

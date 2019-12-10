@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const some = express();
 const review =  require('../models/review');
 const song = require('../models/song');
 
