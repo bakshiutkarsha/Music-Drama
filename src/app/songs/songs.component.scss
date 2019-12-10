@@ -62,6 +62,9 @@
               color: #868686;
               &:last-child{
                 border-right: 0;
+                color: pink;
+                cursor: pointer;
+                font-size: 18px;
               }
             }
           }

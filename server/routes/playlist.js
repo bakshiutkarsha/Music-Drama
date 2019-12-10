@@ -49,4 +49,24 @@ router.get('/getSongsForPlaylist/:playlistId', async (req, res) => {
   }
 
 });
+
+router.delete('/deleteFromPlaylist/:playlistId/:songId', async (req, res) => {
+  try{
+    const playlist = await Playlist.update( {_id: req.params.playlistId}, { $pullAll: {song_ids: [req.params.songId] } } )
+    res.json(playlist);
+  } catch(err){
+    res.json({message :err});
+  }
+
+});
+
+router.get('/getAllPlaylists', async (req, res) => {
+  try{
+    const playlist = await Playlist.find();
+    res.json(playlist);
+  } catch(err){
+    res.json({message :err});
+  }
+
+});
 module.exports = router;

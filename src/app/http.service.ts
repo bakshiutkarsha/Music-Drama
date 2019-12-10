@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import URL from './common/url';
 
 
 @Injectable({
@@ -19,49 +20,55 @@ export class HttpService {
     return httpOptions;
   }
 
-
-  //OPTIMIZE URLS, POST, GET
-  getAllSongs() {
-    return this.http.get('http://localhost:3000/songs/getAllSongs', {
+  getMethod(url){
+    return this.http.get(url, {
       headers: this.createHeaderOptions().headers
     });
   }
 
-  getSongReview(songId) {
-    let url = 'http://localhost:3000/reviews/getReviewForSong/:songId';
-    let urlWithId = url.replace(':songId', songId);
-    return this.http.get(urlWithId, {
+  postMethod(url, data){
+    return this.http.post(url, data, {
       headers: this.createHeaderOptions().headers
     });
   }
 
-  postReviewForSong(postData){
-    let url = 'http://localhost:3000/reviews/postReviewForsong';
-    return this.http.post(url, postData, {
-      headers: this.createHeaderOptions().headers
-    });
+
+// SONGS PAGE API's
+  getAllSongs(){
+    return this.getMethod(URL.getApiUrl().GET_ALL_SONGS);
   }
 
   postNewSong(postData){
-    let url = 'http://localhost:3000/songs/createNewSong';
-    return this.http.post(url, postData, {
-      headers: this.createHeaderOptions().headers
-    });
+    return this.postMethod(URL.getApiUrl().CREATE_SONG, postData);
   }
 
   searchSongs(searchData){
-    let url = 'http://localhost:3000/songs/search';
-    return this.http.post(url, searchData, {
-      headers: this.createHeaderOptions().headers
-    });
+    return this.postMethod(URL.getApiUrl().SEARCH_SONG, searchData);
   }
 
+// REVIEW PAGE API's
+
+  getSongReviews(songId) {
+    return this.getMethod(URL.getApiUrl().GET_SONG_REVIEW.replace(':songId', songId));
+  }
+
+  postReviewForSong(postData){
+    return this.postMethod(URL.getApiUrl().CREATE_REVIEW, postData);
+  }
+
+// AUTHENTICATE
   authenticateUser(postData){
-    let url = 'http://localhost:3000/auth/validate';
-    return this.http.post(url, postData, {
-      headers: this.createHeaderOptions().headers
-    });
+    return this.postMethod(URL.getApiUrl().AUTHENTICATE, postData);
   }
 
+//  PLAYLIST API's
+
+  getAllPlaylists(){
+    return this.getMethod(URL.getApiUrl().GET_ALL_PLAYLISTS);
+  }
+
+  createPlaylist(postData){
+    return this.postMethod(URL.getApiUrl().CREATE_PLAYLIST, postData);
+  }
 
 }

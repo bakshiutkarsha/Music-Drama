@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpService } from '../http.service';
+import { ActivatedRoute } from '@angular/router';
+import { ModalService } from '../modal/modal.service';
 
 @Component({
   selector: 'app-songs',
@@ -12,7 +14,7 @@ export class SongsComponent implements OnInit {
 
   searchText: String;
 
-  constructor(private _http: HttpService) { }
+  constructor(private _http: HttpService, private route: ActivatedRoute, private modalService: ModalService) { }
 
   ngOnInit() {
     if(this.searchText){
@@ -58,6 +60,14 @@ export class SongsComponent implements OnInit {
     for(var i = 0; i <= rating; i++){
       allStar[i].classList.add('fa-star');
     }
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 
 }

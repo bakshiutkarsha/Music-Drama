@@ -13,6 +13,7 @@ import { AddSongComponent } from './add-song/add-song.component';
 import {  ModalModule } from './modal/modal.module';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { PlaylistComponent } from './playlist/playlist.component';
 
 
 
@@ -23,7 +24,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     ReviewsComponent,
     AddSongComponent,
-    LoginComponent
+    LoginComponent,
+    PlaylistComponent
     // ModalComponent
   ],
   imports: [

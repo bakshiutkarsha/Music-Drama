@@ -13,7 +13,8 @@
     <div class="song-list-cntr">
       <div *ngIf="songList">
         <div *ngFor="let song of songList">
-          <div class="each-song"  [routerLink]="[song._id, 'review']" [attr.data-song-id]="song._id">
+          <!-- <div class="each-song"  [routerLink]="[song._id, 'review']" [attr.data-song-id]="song._id"> -->
+            <div class="each-song" [attr.data-song-id]="song._id">
             <!-- <div class="img-cntr">
               <img src={{selectRandom()}} alt="">
             </div> -->
@@ -23,6 +24,7 @@
                   <span>BY: {{song.artist}}</span>
                   <span>ALBUM: {{song.album}}</span>
                   <span>GENRE: {{song.genre}}</span>
+                  <span (click)="openModal('open-playlist')"><i class="fa fa-heart"></i></span>
                 </div>
             </div>
 
@@ -45,3 +47,7 @@
   </div>
 
 </div>
+
+<jw-modal id="open-playlist">
+
+</jw-modal>

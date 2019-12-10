@@ -22,7 +22,7 @@ export class ReviewsComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     console.log(this);
-    this._http.getSongReview(this.id).subscribe(data => {
+    this._http.getSongReviews(this.id).subscribe(data => {
       this.reviewList = data;
     }, (err) => {
       console.log(err);
