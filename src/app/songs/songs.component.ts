@@ -14,6 +14,10 @@ export class SongsComponent implements OnInit {
 
   searchText: String;
 
+  playlists: Object;
+
+  selectedSongId: String;
+
   constructor(private _http: HttpService, private route: ActivatedRoute, private modalService: ModalService) { }
 
   ngOnInit() {
@@ -33,7 +37,7 @@ export class SongsComponent implements OnInit {
     return `/assets/images/random-${Math.floor(Math.random() * 5) + 1}.png`;
   }
 
-  toggleAccordian(event) {
+  toggleAccordian() {
     if (event.target.classList.contains('expanded')) {
         event.target.nextElementSibling.classList.remove('expanded');
         event.target.nextElementSibling.classList.add('collapsed');
@@ -56,13 +60,30 @@ export class SongsComponent implements OnInit {
   populateRating(rating){
     let starCntr = document.getElementById('star-cntr');
     let allStar = starCntr.querySelectorAll('.fa .fa-star-o');
-    console.log(allStar);
     for(var i = 0; i <= rating; i++){
       allStar[i].classList.add('fa-star');
     }
   }
 
-  openModal(id: string) {
+  getAllPlaylists(){
+    this._http.getAllPlaylists().subscribe(data => {
+      this.playlists = data;
+    });
+  }
+
+  addSongToPlaylist(id){
+    let req = {
+       "song_ids":[this.selectedSongId],
+	     "playlistId": id
+    }
+    this._http.addSongToPlaylist(req).subscribe(data => {
+      this.playlists = data;
+    });
+  }
+
+  openModal(id: string, songId) {
+    this.selectedSongId = songId;
+    this.getAllPlaylists()
     this.modalService.open(id);
   }
 

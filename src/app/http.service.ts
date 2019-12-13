@@ -71,4 +71,12 @@ export class HttpService {
     return this.postMethod(URL.getApiUrl().CREATE_PLAYLIST, postData);
   }
 
+  getSongsForPlaylist(playlistId){
+    return this.getMethod(URL.getApiUrl().GET_SONG_FOR_PLAYLIST.replace(':playlistId:', playlistId));
+  }
+
+  addSongToPlaylist(postData){
+    return this.postMethod(URL.getApiUrl().UPDATE_PLAYLIST_SONGS, postData);
+  }
+
 }

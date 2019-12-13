@@ -1,7 +1,38 @@
 .playlist-cntr{
+  letter-spacing: 0.3px;
   padding: 30px;
+  width: 45%;
+  display: inline-block;
   .head-txt{
     font-size: 30px;
     font-weight: bold;
+  }
+  .each-playlist-cntr{
+    padding-top: 20px;
+    .each-playlist{
+      padding: 15px;
+      background: #e4daf7;
+      cursor: pointer;
+      &:nth-child(1){
+        background: #e4daf7 ;
+      }
+      &:nth-child(2){
+        background: #88daa14d;
+      }
+      &:nth-child(3){
+        background: #b8ddef9e;
+      }
+      &:nth-child(4){
+        background: #f3cb9b6e;
+      }
+      &:nth-child(5){
+        background: #e98bf570;
+      }
+    }
+
+  }
+  .each-playlist-song{
+    background: #e8bc6a5c;
+    padding: 15px;
   }
 }

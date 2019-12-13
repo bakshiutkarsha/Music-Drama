@@ -1,8 +1,19 @@
 <div class="playlist-cntr">
-  <p class="head-txt">All Playlists</p>
+  <p class="head-txt">All Playlists
+    <i class="fa fa-list"></i>
+  </p>
   <div class="each-playlist-cntr">
-    <div class="each-playlist" *ngFor="let playlist of playlists">
+    <div class="each-playlist" *ngFor="let playlist of playlists" (click)=getSongsFromPlaylist(playlist._id,playlist.title)>
       <p>{{playlist.title}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="playlist-cntr" *ngIf="songsList">
+  <p class="head-txt"> Songs in {{playListName}}: </p>
+  <div class="songs-cntr each-playlist-cntr">
+    <div class="each-playlist-song" *ngFor="let song of songsList.songs">
+        <p>  <i class="fa fa-music"></i> {{song.song_title}}</p>
     </div>
   </div>
 </div>

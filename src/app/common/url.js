@@ -12,7 +12,7 @@ const API_URLS =  {
 
   CREATE_PLAYLIST: ':BASE_URL:/playlist/createNewPlaylist',
   DELETE_SONG_FROM_PLAYLIST: ':BASE_URL:/playlist/deleteFromPlaylist/:playlistId/:songId',
-  GET_SONG_FOR_PLAYLIST: ':BASE_URL:/playlist/getSongsForPlaylist/:playlistId',
+  GET_SONG_FOR_PLAYLIST: ':BASE_URL:/playlist/getSongsForPlaylist/:playlistId:',
   UPDATE_PLAYLIST_SONGS: ':BASE_URL:/playlist/updatePlaylistSong',
   GET_ALL_PLAYLISTS: ':BASE_URL:/playlist/getAllPlaylists'
 }
