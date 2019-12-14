@@ -10,13 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { AddSongComponent } from './add-song/add-song.component';
 // import { ModalComponent } from './modal/modal.component';
-import {  ModalModule } from './modal/modal.module';
+import { ModalModule } from './modal/modal.module';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { PlaylistComponent } from './playlist/playlist.component';
+import { CreatePlaylistComponent } from './create-playlist/create-playlist.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
+//I keep the new line
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { PlaylistComponent } from './playlist/playlist.component';
     ReviewsComponent,
     AddSongComponent,
     LoginComponent,
-    PlaylistComponent
+    PlaylistComponent,
+    CreatePlaylistComponent
     // ModalComponent
   ],
   imports: [
@@ -34,9 +36,11 @@ import { PlaylistComponent } from './playlist/playlist.component';
     HttpClientModule,
     AngularFontAwesomeModule,
     ModalModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

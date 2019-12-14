@@ -2,9 +2,16 @@
   <p class="head-txt">All Playlists
     <i class="fa fa-list"></i>
   </p>
+  <div class="floating-button-cntr" routerLink="createPlaylist">
+    <div class="float-button">
+       +
+    </div>
+  </div>
   <div class="each-playlist-cntr">
-    <div class="each-playlist" *ngFor="let playlist of playlists" (click)=getSongsFromPlaylist(playlist._id,playlist.title)>
-      <p>{{playlist.title}}</p>
+    <div class="each-playlist" *ngFor="let playlist of playlists" (click)=getSongsFromPlaylist(playlist._id,playlist.title,playlist.description)>
+      <p>{{playlist.title}} <i class="fa fa-pencil" (click)="openPlaylistEditModal('edit-playlist', $event, playlist._id,playlist.title,playlist.description)"></i></p>
+      <p>{{playlist.description}}</p>
+      <p>Type :{{playlist.is_private ? ' Private':' Public'}}</p>
     </div>
   </div>
 </div>
@@ -18,3 +25,24 @@
     </div>
   </div>
 </div>
+
+<jw-modal id="edit-playlist">
+  <p class="header"> Edit Playlist Fields: </p>
+    <input type="text" name="" value="{{playListName}}">
+    <input type="text" name="" value="{{playListDescription}}">
+    <div class="divider">
+        <p>
+          <input type="radio" id="private" name="type" checked>
+          <label for="private">Private</label>
+        </p>
+        <p>
+          <input type="radio" id="public" name="type">
+          <label for="public">Public</label>
+        </p>
+    </div>
+    <div class="add-btn-cntr">
+      <div class="add-btn" (click)="addSongToPlaylist(playlist._id)">
+        Edit Playlist
+      </div>
+    </div>
+</jw-modal>

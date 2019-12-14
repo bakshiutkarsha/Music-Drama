@@ -6,6 +6,7 @@
   .head-txt{
     font-size: 30px;
     font-weight: bold;
+    display: inline-block;
   }
   .each-playlist-cntr{
     padding-top: 20px;
@@ -28,12 +29,29 @@
       &:nth-child(5){
         background: #e98bf570;
       }
+      p:first-child{
+        font-weight: bold;
+        font-size: 18px;
+        text-transform: capitalize;
+        color: #500050;
+      }
+      p:last-child{
+        font-size: 14px;
+        padding-top: 5px;
+        color: #8e8d8d;
+      }
+      i{
+        float: right;
+        padding: 10px;
+      }
+
     }
 
   }
   .each-playlist-song{
     background: #e8bc6a5c;
     padding: 15px;
+    color: #4c4747;
     p{
       display: inline-block;
     }
@@ -42,4 +60,13 @@
       cursor: pointer;
     }
   }
+}
+
+.floating-button-cntr{
+  background: #1745af8c;
+  float: right;
+  display: inline-block;
+  -webkit-box-shadow: 11px 7px 15px -9px rgba(81,72,117,1);
+  -moz-box-shadow: 11px 7px 15px -9px rgba(81,72,117,1);
+  box-shadow: 11px 7px 15px -9px rgba(81,72,117,1);
 }

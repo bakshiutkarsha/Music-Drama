@@ -1,3 +1,5 @@
+// CSS Reset, comment out if not required or using a different module
+@import '~minireset.css/minireset';
 /* You can add global styles to this file, and also import other style files */
 *{
   margin: 0;
@@ -13,7 +15,7 @@ html,body{
 .add-cntr, .add-btn, .edit-cntr {
   display: inline-block;
   /* float: right; */
-  background: #3a8e1f;
+  background: #500050;
   letter-spacing: 0.2px;
   color: #fff;
   padding: 7px 15px;
@@ -31,7 +33,7 @@ html,body{
 
 .add-cntr span {
   background: #fff;
-  color: #3a8e1f;
+  color: #500050;
   border-radius: 11px;
   padding: 0px 5px;
   margin-left: 5px;
@@ -44,7 +46,7 @@ input {
   box-sizing: border-box;
   border-radius: 2px;
   border: none;
-  border-bottom: 1.5px solid #bebeea;
+  border-bottom: 1.5px solid #79257942;
   outline: none;
   font-size: 14px;
   letter-spacing: 0.2px;
@@ -80,6 +82,95 @@ input {
   }
 }
 
+.floating-button-cntr{
+  // position: fixed;
+  // top: 20%;
+  // right: 2%;
+  height: 30px;
+  width: 13px;
+  color: #fff;
+  background: pink;
+  padding: 10px 20px;
+  letter-spacing: 0.4px;
+  font-weight: bold;
+  font-size: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-box-shadow: 11px 7px 15px -6px rgba(235,185,192,1);
+  -moz-box-shadow: 11px 7px 15px -6px rgba(235,185,192,1);
+  box-shadow: 11px 7px 15px -6px rgba(235,185,192,1);
+  transition: 0.1s;
+  &:hover{
+    padding: 12px 22px;
+  }
+  .float-button{
+    vertical-align: -webkit-baseline-middle;
+    transform: translate(-1px, -5px);
+  }
+}
+
 .hide{
   display: none;
 }
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #50005040;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #500050;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.divider span{
+  margin-right: 10px;
+}
+@import "~igniteui-angular/lib/core/styles/themes/index";
+// Uncomment the following lines if you want to add a custom palette:
+// $primary: #731963 !default;
+// $secondary: #ce5712 !default;
+// $app-palette: igx-palette($primary, $secondary);
+
+@include igx-core();
+@include igx-theme($default-palette);

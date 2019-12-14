@@ -1,0 +1,42 @@
+<div class="create-playlist-cntr">
+  <div class="input-cntr">
+    <div class="input-cntr-each">
+      <label for="">Title <span>*</span> :</label>
+      <input type="text" name="" id="title" [(ngModel)]="title">
+    </div>
+
+    <div class="input-cntr-each">
+      <label for="">Description :</label>
+      <input type="text" name="" id="artist" [(ngModel)]="description">
+    </div>
+
+    <div class="playlist-song-cntr" *ngIf="songList">
+      <p>SONG LIST</p>
+      <div class="song-list-cntr" *ngFor="let song of songList">
+        <div class="song-list-each">
+            <input type="checkbox" name="song-id" value="{{song._id}}" id="{{song._id}}">
+            <label for="{{song._id}}">{{song.song_title}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">
+        <label for="">Playlist Type :</label>
+        <span>
+          <input type="radio" id="private" name="playlist-type" value="true">
+          <label for="private">Private</label>
+        </span>
+        <span>
+          <input type="radio" id="public" name="playlist-type" value="false">
+          <label for="public">Public</label>
+        </span>
+    </div>
+
+    <div class="add-btn-cntr">
+      <div class="add-btn" (click)="createNewPlaylist()">
+        Create Playlist
+      </div>
+    </div>
+
+  </div>
+</div>

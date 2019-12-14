@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { ActivatedRoute } from '@angular/router';
 import { ModalService } from '../modal/modal.service';
 
 
@@ -18,7 +19,9 @@ export class PlaylistComponent implements OnInit {
 
   currentPlaylistId: String;
 
-  constructor(private _http: HttpService, private modalService: ModalService) { }
+  playListDescription: String;
+
+  constructor(private _http: HttpService, private route: ActivatedRoute, private modalService: ModalService) { }
 
   ngOnInit() {
     this._http.getAllPlaylists().subscribe(data => {
@@ -26,11 +29,12 @@ export class PlaylistComponent implements OnInit {
     });
   }
 
-  getSongsFromPlaylist(id, title){
+  getSongsFromPlaylist(id, title, description){
     this._http.getSongsForPlaylist(id).subscribe(data => {
       this.songsList = data;
       this.playListName = title;
       this.currentPlaylistId = id;
+      this.playListDescription = description;
       console.log(this.songsList)
     });
   }
@@ -39,6 +43,13 @@ export class PlaylistComponent implements OnInit {
     this._http.deleteSongFromPlaylist(this.currentPlaylistId, songId).subscribe(data => {
       console.log(data);
     });
+  }
+
+  openPlaylistEditModal(id: string, event, playlistId, playListName, playListDescription){
+    this.playListName = playListName;
+    this.playListDescription = playListDescription;
+    this.modalService.open(id);
+    event.stopPropagation();
   }
 
 }

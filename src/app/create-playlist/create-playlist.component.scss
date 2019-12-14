@@ -1,0 +1,19 @@
+.playlist-song-cntr{
+  width: 40%;
+  border: 1px solid;
+  border-radius: 4px;
+  margin: 20px 0;
+  p{
+    padding: 10px 5px;
+    background: #000;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+  .song-list-cntr{
+    padding: 10px 5px;
+  }
+  input{
+    width: inherit;
+    margin-right: 15px;
+  }
+}

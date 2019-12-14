@@ -19,10 +19,6 @@ const PlaylistSchema = mongoose.Schema(
     type: String,
     required: true
   },
-  submitted_on: {
-    type: String,
-    required: true
-  },
   is_private: {
     type: Boolean,
     required: true

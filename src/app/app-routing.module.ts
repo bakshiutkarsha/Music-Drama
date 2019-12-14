@@ -6,6 +6,7 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { AddSongComponent } from './add-song/add-song.component';
 import {  LoginComponent } from './login/login.component';
 import {  PlaylistComponent } from './playlist/playlist.component';
+import {  CreatePlaylistComponent } from './create-playlist/create-playlist.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'songs/:id/review', component: ReviewsComponent},
   { path: 'songs/addSong', component: AddSongComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'playlist', component: PlaylistComponent}
+  { path: 'playlist', component: PlaylistComponent},
+  { path: 'playlist/createPlaylist', component: CreatePlaylistComponent}
 ];
 
 @NgModule({
