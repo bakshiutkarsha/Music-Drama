@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { ModalService } from '../modal/modal.service';
 
 @Component({
   selector: 'app-add-song',
@@ -12,8 +13,9 @@ export class AddSongComponent implements OnInit {
   year: Number;
   album: String;
   genre: String;
+  rating: Number;
 
-  constructor(private _http: HttpService) { }
+  constructor(private _http: HttpService, private modalService: ModalService) { }
 
   ngOnInit() {
   }
@@ -35,6 +37,14 @@ export class AddSongComponent implements OnInit {
     }, (err) => {
 
     })
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  addStar(rating){
+    this.rating = rating;
   }
 
 }

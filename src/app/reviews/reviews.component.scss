@@ -2,12 +2,12 @@
   font-family: "Didact Gothic", sans-serif;
   .each-review-cntr{
     padding: 30px;
-    background: #ea9a9a;
+    background: #e4daf7;
     .reviewer{
       font-size: 30px;
     }
     .review-text{
-      border-left: 4px solid #000;
+      border-left: 4px solid #7f6ea0;
       padding: 10px;
     }
     &:nth-child(even){
@@ -27,4 +27,16 @@
       transform: scale(1.5, 1.5);
     }
   }
+}
+
+.user-rate-cntr{
+  padding: 10px;
+  i.fa{
+    color: #a07d00c4;
+    margin-right: 10px;
+    font-size: 25px;
+  }
+}
+.add-btn-cntr{
+  padding: 20px;
 }

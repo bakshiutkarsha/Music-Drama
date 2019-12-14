@@ -1,9 +1,16 @@
 <div class="review-cntr">
   <div *ngIf="reviewList">
     <div *ngFor="let review of reviewList" class="each-review-cntr">
-      <p class="reviewer">{{review.submitted_by}}</p>
+      <p class="reviewer">  {{review.submitted_by}} <i class="fa fa-user"></i></p>
       <div class="review-text">
         <span>{{review.review_text}}</span>
+    </div>
+    <div class="user-rate-cntr">
+      <i class="fa"  [ngClass]="review.rating >= 1 ? 'fa-star' : 'fa-star-o'"></i>
+      <i class="fa"  [ngClass]="review.rating >= 2 ? 'fa-star' : 'fa-star-o'"></i>
+      <i class="fa"  [ngClass]="review.rating >= 3 ? 'fa-star' : 'fa-star-o'"></i>
+      <i class="fa"  [ngClass]="review.rating >= 4 ? 'fa-star' : 'fa-star-o'"></i>
+      <i class="fa"  [ngClass]="review.rating == 5 ? 'fa-star' : 'fa-star-o'"></i>
     </div>
   </div>
 </div>

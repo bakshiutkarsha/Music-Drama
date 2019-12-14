@@ -8,8 +8,7 @@ const PlaylistSchema = mongoose.Schema(
   },
   song_ids:{
     type: Array,
-    required: true,
-    unique: true
+    required: true
   },
   description: {
     type: String,
@@ -20,7 +19,7 @@ const PlaylistSchema = mongoose.Schema(
     required: true
   },
   is_private: {
-    type: Boolean,
+    type: String,
     required: true
   }
 });

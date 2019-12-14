@@ -39,14 +39,14 @@ export class SongsComponent implements OnInit {
 
   toggleAccordian(event) {
     if (event.target.classList.contains('expanded')) {
-        event.target.nextElementSibling.classList.remove('expanded');
-        event.target.nextElementSibling.classList.add('collapsed');
+        event.target.previousElementSibling.classList.remove('expanded');
+        event.target.previousElementSibling.classList.add('collapsed');
 
         event.target.classList.remove('expanded');
         event.target.classList.add('collapsed');
     } else if(event.target.classList.contains('collapsed')){
-        event.target.nextElementSibling.classList.add('expanded');
-        event.target.nextElementSibling.classList.remove('collapsed');
+        event.target.previousElementSibling.classList.add('expanded');
+        event.target.previousElementSibling.classList.remove('collapsed');
 
         event.target.classList.add('expanded');
         event.target.classList.remove('collapsed');

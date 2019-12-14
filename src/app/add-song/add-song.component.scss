@@ -40,3 +40,16 @@ input {
     }
   }
 }
+
+.rate-cntr{
+  padding: 20px;
+  i.fa{
+    color: #f1c219e0;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 25px;
+    &:hover{
+      transform: scale(1.5, 1.5);
+    }
+  }
+}

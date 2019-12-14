@@ -110,3 +110,19 @@
     display: block;
   }
 }
+
+.extra-details{
+  p{
+    font-size: 12px;
+    color: #949292ef;
+  }
+  .reviewLink{
+    width: 170px;
+    background: pink;
+    color: #fff;
+    border-radius: 4px;
+    padding: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+}
