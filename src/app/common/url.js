@@ -14,7 +14,9 @@ const API_URLS =  {
   DELETE_SONG_FROM_PLAYLIST: ':BASE_URL:/playlist/deleteFromPlaylist/:playlistId/:songId',
   GET_SONG_FOR_PLAYLIST: ':BASE_URL:/playlist/getSongsForPlaylist/:playlistId:',
   UPDATE_PLAYLIST_SONGS: ':BASE_URL:/playlist/updatePlaylistSong',
-  GET_ALL_PLAYLISTS: ':BASE_URL:/playlist/getAllPlaylists'
+  GET_ALL_PLAYLISTS: ':BASE_URL:/playlist/getAllPlaylists',
+  GET_FILTERED_PLAYLISTS: ':BASE_URL:/playlist/getFilteredPlaylist/:userId',
+  UPDATE_PLAYLIST_FIELDS: ':BASE_URL:/playlist/updatePlaylist/:playlistId', 
 }
 
 function getApiUrl() {

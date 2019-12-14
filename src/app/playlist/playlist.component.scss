@@ -3,6 +3,7 @@
   padding: 30px;
   width: 45%;
   display: inline-block;
+  vertical-align: top;
   .head-txt{
     font-size: 30px;
     font-weight: bold;
@@ -24,10 +25,10 @@
         background: #b8ddef9e;
       }
       &:nth-child(4){
-        background: #f3cb9b6e;
+        background: #e0f58b2e;
       }
       &:nth-child(5){
-        background: #e98bf570;
+        background: #f3cb9b6e;
       }
       p:first-child{
         font-weight: bold;
@@ -44,8 +45,34 @@
         float: right;
         padding: 10px;
       }
-
+      &.others{
+        &:nth-child(2){
+          background: #e6b77f4d ;
+        }
+        &:nth-child(4){
+          background: #e0f58b2e;
+        }
+        &:nth-child(1){
+          background: #88daa14d;
+        }
+        &:nth-child(5){
+          background: #e6b77f4d;
+        }
+        &:nth-child(3){
+          background: #a3d0cc78;
+        }
+      }
     }
+    .playlist-head{
+      background: #f3dada;
+      padding: 7px 15px;
+      color: #652f5c;
+      letter-spacing: 0.4px;
+    }
+
+  }
+
+  .playlist-super-cntr{
 
   }
   .each-playlist-song{

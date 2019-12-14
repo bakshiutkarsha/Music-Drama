@@ -1,5 +1,6 @@
 import { Component, OnInit,  EventEmitter, Output } from '@angular/core';
 import { HttpService } from '../http.service';
+import Storage from '../common/webStorage';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     }
     console.log(postData);
     this._http.authenticateUser(postData).subscribe(data => {
+      Storage.setCollection('USER_DETAILS', data);
       this.loginUserHead.emit(data);
       console.log(data);
     }, (err)=>{

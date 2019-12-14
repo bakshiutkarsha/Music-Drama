@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import URL from './common/url';
-
+import Storage from './common/webStorage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  constructor(private http: HttpClient) { }
+  currentUser;
+
+  constructor(private http: HttpClient) {
+      console.log(this.currentUser);
+      this.currentUser = Storage.getCollection('USER_DETAILS');
+
+  }
+
 
   createHeaderOptions(){
+    const token = Storage.getCollection('USER_DETAILS').token;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRhbmR5MDkiLCJhZG1pbiI6ZmFsc2UsImlhdCI6MTU3NDgzMzQxNX0.zqUf8tjrZpEEnH7fZd30pLoKTa48MO-qWaEbXtqqF2E'
+        'Authorization': `Bearer ${token}`
       })
     };
     return httpOptions;
@@ -34,6 +42,12 @@ export class HttpService {
 
   deleteMethod(url){
     return this.http.delete(url, {
+      headers: this.createHeaderOptions().headers
+    });
+  }
+
+  patchMethod(url, data){
+    return this.http.patch(url, data, {
       headers: this.createHeaderOptions().headers
     });
   }
@@ -74,6 +88,7 @@ export class HttpService {
   }
 
   createPlaylist(postData){
+    postData.submitted_by = this.currentUser.userId;
     return this.postMethod(URL.getApiUrl().CREATE_PLAYLIST, postData);
   }
 
@@ -87,6 +102,14 @@ export class HttpService {
 
   deleteSongFromPlaylist(playlistId, songId){
     return this.deleteMethod(URL.getApiUrl().DELETE_SONG_FROM_PLAYLIST.replace(':playlistId', playlistId).replace(':songId', songId));
+  }
+
+  getFilteredPlaylist(){
+    return this.getMethod(URL.getApiUrl().GET_FILTERED_PLAYLISTS.replace(':userId', this.currentUser.userId));
+  }
+
+  updatePlaylistFields(playlistId, postData){
+    return this.patchMethod(URL.getApiUrl().UPDATE_PLAYLIST_FIELDS.replace(':playlistId', playlistId), postData);
   }
 
 }

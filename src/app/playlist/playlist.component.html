@@ -7,17 +7,28 @@
        +
     </div>
   </div>
-  <div class="each-playlist-cntr">
-    <div class="each-playlist" *ngFor="let playlist of playlists" (click)=getSongsFromPlaylist(playlist._id,playlist.title,playlist.description)>
-      <p>{{playlist.title}} <i class="fa fa-pencil" (click)="openPlaylistEditModal('edit-playlist', $event, playlist._id,playlist.title,playlist.description)"></i></p>
+
+  <div class="each-playlist-cntr" *ngIf="playlists">
+    <p class="playlist-head">YOUR PLAYLISTS</p>
+    <div class="each-playlist" *ngFor="let playlist of playlists.userList" (click)=getSongsFromPlaylist(playlist._id,playlist.title,playlist.description)>
+      <p>{{playlist.title}} <i class="fa fa-pencil" (click)="openPlaylistEditModal('edit-playlist', $event, playlist._id,playlist.title,playlist.description, playlist.is_private)"></i></p>
       <p>{{playlist.description}}</p>
-      <p>Type :{{playlist.is_private ? ' Private':' Public'}}</p>
+      <p>Type :{{playlist.is_private == 'true' ? ' Private':' Public'}}</p>
+    </div>
+  </div>
+
+  <div class="each-playlist-cntr" *ngIf="playlists">
+    <p class="playlist-head">OTHERS PLAYLISTS</p>
+    <div class="each-playlist others" *ngFor="let playlist of playlists.otherList" (click)=getSongsFromPlaylist(playlist._id,playlist.title,playlist.description)>
+      <p>{{playlist.title}}</p>
+      <p>{{playlist.description}}</p>
+      <p>Type :{{playlist.is_private == 'true' ? ' Private':' Public'}}</p>
     </div>
   </div>
 </div>
 
 <div class="playlist-cntr" *ngIf="songsList">
-  <p class="head-txt"> Songs in {{playListName}}: </p>
+  <p class="head-txt"> Songs in "{{playListName}}": </p>
   <div class="songs-cntr each-playlist-cntr">
     <div class="each-playlist-song" *ngFor="let song of songsList.songs">
         <p>  <i class="fa fa-music"></i> {{song.song_title}}</p>
@@ -28,20 +39,20 @@
 
 <jw-modal id="edit-playlist">
   <p class="header"> Edit Playlist Fields: </p>
-    <input type="text" name="" value="{{playListName}}">
-    <input type="text" name="" value="{{playListDescription}}">
+    <input type="text" name="" value="{{playListName}}" [(ngModel)]="editedName">
+    <input type="text" name="" value="{{playListDescription}}" [(ngModel)]="editedDescription">
     <div class="divider">
         <p>
-          <input type="radio" id="private" name="type" checked>
+          <input type="radio" id="private" name="type" value="true">
           <label for="private">Private</label>
         </p>
         <p>
-          <input type="radio" id="public" name="type">
+          <input type="radio" id="public" name="type" value="false">
           <label for="public">Public</label>
         </p>
     </div>
     <div class="add-btn-cntr">
-      <div class="add-btn" (click)="addSongToPlaylist(playlist._id)">
+      <div class="add-btn" (click)="editPlaylist()">
         Edit Playlist
       </div>
     </div>

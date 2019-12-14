@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { CreatePlaylistComponent } from './create-playlist/create-playlist.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UsersComponent } from './users/users.component';
 
 //I keep the new line
 @NgModule({
@@ -27,7 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddSongComponent,
     LoginComponent,
     PlaylistComponent,
-    CreatePlaylistComponent
+    CreatePlaylistComponent,
+    UsersComponent
     // ModalComponent
   ],
   imports: [

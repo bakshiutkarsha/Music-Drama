@@ -21,7 +21,7 @@ export class CreatePlaylistComponent implements OnInit {
 
   createNewPlaylist(){
     let checkboxInp = document.querySelectorAll('input[name=song-id]:checked');
-    let radioInp = document.querySelector('input[name="playlist-type"]:checked');
+    let radioInp = document.querySelector('input[name="playlist-type"]:checked') as HTMLInputElement;
     let songIDArray = [];
     for(let i = 0; i < checkboxInp.length; i++){
       songIDArray.push(checkboxInp[i].id);
@@ -31,7 +31,6 @@ export class CreatePlaylistComponent implements OnInit {
       "title": this.title,
       "song_ids": songIDArray,
       "description": this.description,
-      "submitted_by": "utkarsha",
       "is_private": radioInp.value
     }
     console.log(postData)

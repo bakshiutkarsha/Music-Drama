@@ -56,14 +56,18 @@
 
 </div>
 
-<jw-modal id="open-playlist">
-  <p class="header"> Add to: </p>
-  <div class="" *ngFor="let playlist of playlists">
-    <p>{{playlist.title}}</p>
-    <div class="add-btn-cntr">
-      <div class="add-btn" (click)="addSongToPlaylist(playlist._id)">
-        ADD
+<div class="" >
+  <jw-modal id="open-playlist">
+    <p class="header"> Add to: </p>
+    <div class=""  *ngIf="playlists">
+      <div class="" *ngFor="let playlist of playlists.userList">
+        <p>{{playlist.title}}</p>
+        <div class="add-btn-cntr">
+          <div class="add-btn" (click)="addSongToPlaylist(playlist._id)">
+            ADD
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</jw-modal>
+  </jw-modal>
+</div>

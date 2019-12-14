@@ -1,39 +1,45 @@
 <div class="add-song-cntr">
+  <div class="bg-song">
+    <img src="/assets/images/purple-song.jpg" alt="">
+  </div>
   <div class="input-cntr">
-    <div class="input-cntr-each">
-      <label for="">Title <span>*</span> :</label>
-      <input type="text" name="" id="title" [(ngModel)]="title">
+
+    <div class="input-super-cntr">
+      <div class="input-cntr-each">
+        <label for="">Title <span>*</span> :</label>
+        <input type="text" name="" id="title" [(ngModel)]="title">
+      </div>
+
+      <div class="input-cntr-each">
+        <label for="">Artist <span>*</span> :</label>
+        <input type="text" name="" id="artist" [(ngModel)]="artist">
+      </div>
+
+      <div class="divider">
+        <div class="input-cntr-each col-width-50">
+          <label for="">Year :</label>
+          <input type="number" name="" id="year" [(ngModel)]="year">
+        </div>
+        <div class="input-cntr-each col-width-50">
+          <label for="">Album :</label>
+          <input type="text" name="" id="album" [(ngModel)]="album">
+        </div>
+        <div class="input-cntr-each col-width-50">
+          <label for="">Genre :</label>
+          <input type="text" name="" id="genre" [(ngModel)]="genre">
+        </div>
+      </div>
+      <div class="add-btn-cntr">
+        <div class="add-btn" id="add-new-song" (click)="addNewSong()">
+          ADD SONG
+        </div>
+        <div class="add-btn" id="" (click)="openModal('add-review')">
+          ADD SONG WITH REVIEW
+        </div>
+      </div>
     </div>
 
-    <div class="input-cntr-each">
-      <label for="">Artist <span>*</span> :</label>
-      <input type="text" name="" id="artist" [(ngModel)]="artist">
-    </div>
 
-    <div class="divider">
-      <div class="input-cntr-each col-width-50">
-        <label for="">Year :</label>
-        <input type="number" name="" id="year" [(ngModel)]="year">
-      </div>
-      <div class="input-cntr-each col-width-50">
-        <label for="">Album :</label>
-        <input type="text" name="" id="album" [(ngModel)]="album">
-      </div>
-      <div class="input-cntr-each col-width-50">
-        <label for="">Genre :</label>
-        <input type="text" name="" id="genre" [(ngModel)]="genre">
-      </div>
-    </div>
-
-
-    <div class="add-btn-cntr">
-      <div class="add-btn" id="add-new-song" (click)="addNewSong()">
-        ADD SONG
-      </div>
-      <div class="add-btn" id="" (click)="openModal('add-review')">
-        ADD SONG WITH REVIEW
-      </div>
-    </div>
   </div>
 </div>
 
@@ -52,7 +58,7 @@
     </div>
     <div class="add-btn-cntr">
       <div class="add-btn" id="add-new-review" (click)="addNewReview()">
-        ADD 
+        ADD
       </div>
     </div>
     <!-- <button (click)="closeModal('custom-modal-1');">Close</button> -->

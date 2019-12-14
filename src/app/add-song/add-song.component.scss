@@ -16,8 +16,9 @@ input {
 }
 
 .input-cntr{
-  padding: 30px;
+  // padding: 30px;
   font-family: "Didact Gothic", sans-serif;
+  display: inline-block;
   label{
     font-size: 18px;
   }
@@ -52,4 +53,21 @@ input {
       transform: scale(1.5, 1.5);
     }
   }
+}
+
+.bg-song{
+  width: 55%;
+  height: 500px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.add-song-cntr{
+  background: #fff;
+}
+
+.input-super-cntr{
+  display: inline-block;
+  background: #fff;
+  padding: 15px;
 }

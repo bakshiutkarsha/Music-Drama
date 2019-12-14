@@ -69,4 +69,33 @@ router.get('/getAllPlaylists', async (req, res) => {
   }
 
 });
+
+router.get('/getFilteredPlaylist/:userId', async (req, res) => {
+  let playlistFilterArr= [];
+  let userSpecificList = [];
+  const userId = req.params.userId;
+
+  try{
+    const playlist = await Playlist.find();
+    await playlist.forEach(eachPlaylist => {
+      if(eachPlaylist.submitted_by == userId){
+        userSpecificList.push(eachPlaylist);
+      } else if(eachPlaylist.is_private == "false") {
+        playlistFilterArr.push(eachPlaylist);
+      }
+    })
+    res.json({'userList':userSpecificList, 'otherList': playlistFilterArr});
+  } catch(err){
+    res.json({message :err});
+  }
+});
+
+router.patch('/updatePlaylist/:playlistId', async (req, res) => {
+  try{
+    const item = await lib.findOneAndUpdate({_id: req.params.playlistId}, {$set: req.body });
+    res.json(item);
+  } catch(err){
+    res.json({message :err});
+  }
+});
 module.exports = router;

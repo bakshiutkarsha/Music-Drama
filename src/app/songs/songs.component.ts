@@ -66,7 +66,7 @@ export class SongsComponent implements OnInit {
   }
 
   getAllPlaylists(){
-    this._http.getAllPlaylists().subscribe(data => {
+    this._http.getFilteredPlaylist().subscribe(data => {
       this.playlists = data;
     });
   }
@@ -83,7 +83,7 @@ export class SongsComponent implements OnInit {
 
   openModal(id: string, songId) {
     this.selectedSongId = songId;
-    this.getAllPlaylists()
+    this.getAllPlaylists();
     this.modalService.open(id);
   }
 

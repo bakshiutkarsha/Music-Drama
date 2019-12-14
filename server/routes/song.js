@@ -5,7 +5,7 @@ const song = require('../models/song');
 // GET ALL SONGS
 router.get('/getAllSongs', async (req, res) => {
   try {
-    const songs = await song.find();
+    const songs = await song.find().sort({avg_rating: -1});
     res.json(songs);
   } catch (err) {
     res.json({
