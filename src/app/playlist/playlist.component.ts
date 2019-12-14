@@ -16,7 +16,7 @@ export class PlaylistComponent implements OnInit {
 
   playListName: String;
 
-  randomColor: 'red';
+  currentPlaylistId: String;
 
   constructor(private _http: HttpService, private modalService: ModalService) { }
 
@@ -30,8 +30,14 @@ export class PlaylistComponent implements OnInit {
     this._http.getSongsForPlaylist(id).subscribe(data => {
       this.songsList = data;
       this.playListName = title;
-      // this.songsList = Array.of(this.songsList);
+      this.currentPlaylistId = id;
       console.log(this.songsList)
+    });
+  }
+
+  deleteSongFromPlaylist(songId){
+    this._http.deleteSongFromPlaylist(this.currentPlaylistId, songId).subscribe(data => {
+      console.log(data);
     });
   }
 

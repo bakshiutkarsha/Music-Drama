@@ -32,6 +32,12 @@ export class HttpService {
     });
   }
 
+  deleteMethod(url){
+    return this.http.delete(url, {
+      headers: this.createHeaderOptions().headers
+    });
+  }
+
 
 // SONGS PAGE API's
   getAllSongs(){
@@ -77,6 +83,10 @@ export class HttpService {
 
   addSongToPlaylist(postData){
     return this.postMethod(URL.getApiUrl().UPDATE_PLAYLIST_SONGS, postData);
+  }
+
+  deleteSongFromPlaylist(playlistId, songId){
+    return this.deleteMethod(URL.getApiUrl().DELETE_SONG_FROM_PLAYLIST.replace(':playlistId', playlistId).replace(':songId', songId));
   }
 
 }

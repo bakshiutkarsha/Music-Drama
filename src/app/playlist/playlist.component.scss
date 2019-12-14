@@ -34,5 +34,12 @@
   .each-playlist-song{
     background: #e8bc6a5c;
     padding: 15px;
+    p{
+      display: inline-block;
+    }
+    .delete-song{
+      float: right;
+      cursor: pointer;
+    }
   }
 }

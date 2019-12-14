@@ -14,6 +14,7 @@
   <div class="songs-cntr each-playlist-cntr">
     <div class="each-playlist-song" *ngFor="let song of songsList.songs">
         <p>  <i class="fa fa-music"></i> {{song.song_title}}</p>
+        <p class="delete-song" (click)=deleteSongFromPlaylist(song._id)> <i class="fa fa-trash-o"></i></p>
     </div>
   </div>
 </div>
