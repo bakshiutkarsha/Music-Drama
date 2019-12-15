@@ -75,10 +75,20 @@ router.post('/validate', async (req, res) => {
 
 })
 
-//Deactivate Users
-router.patch('/deactivate/:userId', async(req, res)=>{
+//Get all Users
+router.get('/getAllUsers', async(req, res)=>{
   try{
-    const item = await user.update({_id: req.params.userId}, {$set: {is_active: false} });
+    const item = await user.find({}, {password:0, hash:0});
+    res.json(item);
+  } catch(err){
+    res.json({message :err});
+  }
+})
+
+//Deactivate Users
+router.patch('/updateUserDeatils/:userId', async(req, res)=>{
+  try{
+    const item = await user.findOneAndUpdate({_id: req.params.userId}, {$set: req.body });
     res.json(item);
   } catch(err){
     res.json({message :err});

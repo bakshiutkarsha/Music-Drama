@@ -16,7 +16,6 @@ export class HttpService {
 
   }
 
-
   createHeaderOptions(){
     const token = Storage.getCollection('USER_DETAILS').token;
     const httpOptions = {
@@ -76,9 +75,17 @@ export class HttpService {
     return this.postMethod(URL.getApiUrl().CREATE_REVIEW, postData);
   }
 
-// AUTHENTICATE
+// AUTHENTICATE AND USER
   authenticateUser(postData){
     return this.postMethod(URL.getApiUrl().AUTHENTICATE, postData);
+  }
+
+  getAllUsers(){
+    return this.getMethod(URL.getApiUrl().GET_ALL_USERS);
+  }
+
+  upadetUser(userId, postData){
+    return this.patchMethod(URL.getApiUrl(userId).UPDATE_USER.replace(':userId', userId), postData);
   }
 
 //  PLAYLIST API's
@@ -111,5 +118,6 @@ export class HttpService {
   updatePlaylistFields(playlistId, postData){
     return this.patchMethod(URL.getApiUrl().UPDATE_PLAYLIST_FIELDS.replace(':playlistId', playlistId), postData);
   }
+
 
 }

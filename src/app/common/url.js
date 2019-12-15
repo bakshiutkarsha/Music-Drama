@@ -9,6 +9,8 @@ const API_URLS =  {
   CREATE_REVIEW:  ':BASE_URL:/reviews/postReviewForsong',
 
   AUTHENTICATE:  ':BASE_URL:/auth/validate',
+  GET_ALL_USERS: ':BASE_URL:/auth/getAllUsers',
+  UPDATE_USER: ':BASE_URL:/auth/updateUserDeatils/:userId',
 
   CREATE_PLAYLIST: ':BASE_URL:/playlist/createNewPlaylist',
   DELETE_SONG_FROM_PLAYLIST: ':BASE_URL:/playlist/deleteFromPlaylist/:playlistId/:songId',
@@ -16,7 +18,7 @@ const API_URLS =  {
   UPDATE_PLAYLIST_SONGS: ':BASE_URL:/playlist/updatePlaylistSong',
   GET_ALL_PLAYLISTS: ':BASE_URL:/playlist/getAllPlaylists',
   GET_FILTERED_PLAYLISTS: ':BASE_URL:/playlist/getFilteredPlaylist/:userId',
-  UPDATE_PLAYLIST_FIELDS: ':BASE_URL:/playlist/updatePlaylist/:playlistId', 
+  UPDATE_PLAYLIST_FIELDS: ':BASE_URL:/playlist/updatePlaylist/:playlistId'
 }
 
 function getApiUrl() {

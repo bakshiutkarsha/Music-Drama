@@ -1,1 +1,20 @@
-<p>users works!</p>
+<div class="" *ngIf="users">
+  <div class="rTable">
+    <div class="rTableRow">
+      <div class="rTableHead"><strong>User Name</strong></div>
+      <div class="rTableHead"><strong>Role</strong></div>
+      <div class="rTableHead"><strong>Status</strong></div>
+      <div class="rTableHead"><strong>Action</strong></div>
+    </div>
+
+      <div class="rTableRow" *ngFor ="let user of users" >
+        <div class="rTableCell">{{user.email}}</div>
+        <div class="rTableCell">{{user.is_admin == 'true' ? 'Admin':'User'}}</div>
+        <div class="rTableCell"><p [className]="user.is_active == 'true' ? 'active' : 'deactivate'"></p>{{user.is_active == 'true' ? 'Active' : 'Not Active'}}</div>
+        <div class="rTableCell">
+          <p class="actions activate" (click)="updateUserStatus(user._id, user.is_active, 'is_active')"> <i class="fa fa-ban"></i>{{user.is_active == 'true' ? 'Deactivate' : 'Activate'}}</p>
+          <p class="actions admin" (click)="updateUserStatus(user._id, user.is_admin, 'is_admin')"> <i class="fa fa-user-plus"></i>{{user.is_admin == 'true' ? 'Remove Admin' : 'Make Admin'}}</p>
+        </div>
+      </div>
+  </div>
+</div>

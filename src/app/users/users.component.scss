@@ -1,0 +1,70 @@
+.rTable {
+   display: table;
+   width: 100%;
+}
+.rTableRow {
+   display: table-row;
+}
+.rTableHeading {
+   display: table-header-group;
+   background-color: #ddd;
+}
+.rTableCell, .rTableHead {
+   display: table-cell;
+   padding: 15px;
+   width: 25%;
+   border-bottom: 1px solid #e2dede;
+   color: #848484;
+   font-size: 14px;
+}
+
+.rTableHead{
+  color: #000;
+  font-size: 16px;
+}
+
+.rTableHeading {
+   display: table-header-group;
+   background-color: #ddd;
+   font-weight: bold;
+}
+.rTableFoot {
+   display: table-footer-group;
+   font-weight: bold;
+   background-color: #ddd;
+}
+.rTableBody {
+   display: table-row-group;
+}
+.active, .deactivate{
+  width: 10px;
+  height: 10px;
+  border-radius: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  background: green;
+  }
+
+  .deactivate{
+    background: #b10000c7;
+  }
+
+  .actions{
+    display: inline-block;
+    //background: red;
+    margin-right: 10px;
+    padding: 7px 20px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    &.admin{
+      background: #ffb549;
+    }
+    &.activate{
+      background: #1745af8c
+    }
+    i{
+      margin-right: 5px;
+    }
+  }
