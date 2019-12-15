@@ -14,6 +14,8 @@ export class AddSongComponent implements OnInit {
   album: String;
   genre: String;
   rating: Number;
+  reviewText: String;
+
 
   constructor(private _http: HttpService, private modalService: ModalService) { }
 
@@ -22,18 +24,25 @@ export class AddSongComponent implements OnInit {
 
   addNewSong() {
     let postData = {
-      "submitted_by": "utkarsha.bakshi@foo.com",
-      "submitted_on": "19-10-2019",
       "song_title": this.title,
       "artist": this.artist,
       "album": this.album,
       "year": this.year,
       "genre": this.genre
     }
-    console.log(postData);
-    console.log(this)
-    this._http.postNewSong(postData).subscribe(data => {
+    this._http.postNewSong(postData).subscribe(songData => {
+      if (this.rating) {
+        let reviewData = {
+          "review_text": this.reviewText,
+          "rating": this.rating,
+          "song_id": songData._id
+        }
+        this._http.postReviewForSong(reviewData).subscribe(data => {
 
+        }, (err) => {
+
+        })
+      }
     }, (err) => {
 
     })
@@ -43,7 +52,7 @@ export class AddSongComponent implements OnInit {
     this.modalService.open(id);
   }
 
-  addStar(rating){
+  addStar(rating) {
     this.rating = rating;
   }
 

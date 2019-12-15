@@ -21,7 +21,7 @@ router.post('/search', async (req, res) =>{
       $text: {
         $search: req.body.keyword
       }
-    });
+    }).sort({avg_rating: -1});
     res.json(songList);
   } catch (err) {
     console.log(err);
@@ -58,7 +58,7 @@ router.post('/createNewSong', async (req, res) => {
 
   try {
     const savedSong = await newSong.save();
-    res.sendStatus(200).json(savedSong);
+    res.status(200).send(savedSong);
   } catch (err) {
     res.json({
       message: err

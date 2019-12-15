@@ -14,29 +14,23 @@ const SongSchema = mongoose.Schema({
     },
     album: {
       type: String,
-      default: 10,
       required: false
     },
     year: {
       type: Number,
-      default: 100,
       required: false
     },
     genre: {
-      type: String,
-      default: 100
-    },
-    submitted_by:{
-      type: String,
-      required: true
-    },
-    submitted_on:{
-      type: String,
-      required: true
+      type: String
     },
     avg_rating:{
       type: Number,
       required: false
+    },
+    is_visible:{
+      type: String,
+      required: false,
+      default: 'true'
     }
 
 });

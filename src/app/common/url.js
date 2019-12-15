@@ -2,8 +2,8 @@ const BASE_URL = 'http://localhost:3000'
 
 const API_URLS =  {
   GET_ALL_SONGS:   ':BASE_URL:/songs/getAllSongs',
-  SEARCH_SONG:  ':BASE_URL:/songs/createNewSong',
-  CREATE_SONG:  ':BASE_URL:/songs/search',
+  CREATE_SONG:  ':BASE_URL:/songs/createNewSong',
+  SEARCH_SONG:  ':BASE_URL:/songs/search',
 
   GET_SONG_REVIEW:   ':BASE_URL:/reviews/getReviewForSong/:songId',
   CREATE_REVIEW:  ':BASE_URL:/reviews/postReviewForsong',

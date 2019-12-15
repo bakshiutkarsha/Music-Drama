@@ -43,8 +43,6 @@ export class ReviewsComponent implements OnInit {
 
   addNewReview(){
     let postData = {
-      "submitted_by"  : "utkarsha bakshi-5",
-      "submitted_on"  :"23-10-2019",
       "review_text"   : this.reviewText,
       "rating"        : this.rating,
       "song_id"       : this.id

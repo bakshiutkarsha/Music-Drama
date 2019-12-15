@@ -72,6 +72,7 @@ export class HttpService {
   }
 
   postReviewForSong(postData){
+    postData.submitted_by = this.currentUser.email;
     return this.postMethod(URL.getApiUrl().CREATE_REVIEW, postData);
   }
 
