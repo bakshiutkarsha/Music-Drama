@@ -40,6 +40,14 @@ input {
       }
     }
   }
+  .head-text{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #6d2f6d;
+    text-align: center;
+    text-decoration: underline;
+  }
 }
 
 .rate-cntr{
@@ -55,15 +63,17 @@ input {
   }
 }
 
-.bg-song{
-  width: 55%;
-  height: 500px;
-  display: inline-block;
-  vertical-align: top;
-}
-
 .add-song-cntr{
-  background: #fff;
+  background: url('/assets/images/song-bg.jpg');
+  height: 100%;
+  .input-cntr{
+    padding: 0;
+    float: right;
+    height: 100%;
+  }
+  .input-super-cntr{
+    height: 100%;
+  }
 }
 
 .input-super-cntr{

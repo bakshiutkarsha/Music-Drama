@@ -1,10 +1,11 @@
 <div class="add-song-cntr">
   <div class="bg-song">
-    <img src="/assets/images/purple-song.jpg" alt="">
+    <marquee behavior="scroll" direction="left">Live the music like you feel the wind....</marquee>
   </div>
   <div class="input-cntr">
 
     <div class="input-super-cntr">
+      <p class="head-text">ADD YOUR FAVOURITE SONGS:</p>
       <div class="input-cntr-each">
         <label for="">Title <span>*</span> :</label>
         <input type="text" name="" id="title" [(ngModel)]="title">
@@ -43,23 +44,28 @@
   </div>
 </div>
 
+<jw-modal id="process-modal" class="process-modal">
+  <img src="assets/images/process-gif.gif" alt="">
+  <p> Connecting with server....</p>
+</jw-modal>
+
 <jw-modal id="add-review">
-    <h1>Add Review</h1>
-    <div class="rate-cntr">
-      <i class="fa" (click)="addStar(1)" [ngClass]="rating >= 1 ? 'fa-star' : 'fa-star-o'"></i>
-      <i class="fa" (click)="addStar(2)" [ngClass]="rating >= 2 ? 'fa-star' : 'fa-star-o'"></i>
-      <i class="fa" (click)="addStar(3)" [ngClass]="rating >= 3 ? 'fa-star' : 'fa-star-o'"></i>
-      <i class="fa" (click)="addStar(4)" [ngClass]="rating >= 4 ? 'fa-star' : 'fa-star-o'"></i>
-      <i class="fa" (click)="addStar(5)" [ngClass]="rating == 5 ? 'fa-star' : 'fa-star-o'"></i>
+  <h1>Add Review</h1>
+  <div class="rate-cntr">
+    <i class="fa" (click)="addStar(1)" [ngClass]="rating >= 1 ? 'fa-star' : 'fa-star-o'"></i>
+    <i class="fa" (click)="addStar(2)" [ngClass]="rating >= 2 ? 'fa-star' : 'fa-star-o'"></i>
+    <i class="fa" (click)="addStar(3)" [ngClass]="rating >= 3 ? 'fa-star' : 'fa-star-o'"></i>
+    <i class="fa" (click)="addStar(4)" [ngClass]="rating >= 4 ? 'fa-star' : 'fa-star-o'"></i>
+    <i class="fa" (click)="addStar(5)" [ngClass]="rating == 5 ? 'fa-star' : 'fa-star-o'"></i>
+  </div>
+  <div class="input-cntr-each col-width-50">
+    <!-- <label for="">Year :</label> -->
+    <input type="text" name="" placeholder="Write your comments" [(ngModel)]="reviewText">
+  </div>
+  <div class="add-btn-cntr">
+    <div class="add-btn" id="add-new-review" (click)="addNewSong()">
+      ADD
     </div>
-    <div class="input-cntr-each col-width-50">
-        <!-- <label for="">Year :</label> -->
-        <input type="text" name="" placeholder="Write your comments" [(ngModel)]="reviewText">
-    </div>
-    <div class="add-btn-cntr">
-      <div class="add-btn" id="add-new-review" (click)="addNewSong()">
-        ADD
-      </div>
-    </div>
-    <!-- <button (click)="closeModal('custom-modal-1');">Close</button> -->
+  </div>
+  <!-- <button (click)="closeModal('custom-modal-1');">Close</button> -->
 </jw-modal>

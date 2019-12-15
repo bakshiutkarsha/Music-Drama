@@ -86,7 +86,7 @@ input {
   // position: fixed;
   // top: 20%;
   // right: 2%;
-  height: 30px;
+  height: 37px;
   width: 13px;
   color: #fff;
   background: pink;
@@ -100,12 +100,14 @@ input {
   -moz-box-shadow: 11px 7px 15px -6px rgba(235,185,192,1);
   box-shadow: 11px 7px 15px -6px rgba(235,185,192,1);
   transition: 0.1s;
+  margin-right: 20px;
+  margin-top: 7px;
   &:hover{
     padding: 12px 22px;
   }
   .float-button{
     vertical-align: -webkit-baseline-middle;
-    transform: translate(-1px, -5px);
+    transform: translate(-6px, -11px);
   }
 }
 
@@ -165,6 +167,55 @@ input {
 }
 .divider span{
   margin-right: 10px;
+}
+
+.generic-first-time{
+  width: 25%;
+  transform: translate(-50%, 50%);
+  position: absolute;
+  left: 50%;
+  background: #f9ecca;
+  padding: 20px;
+  border-radius: 6px;
+  text-align: center;
+  img{
+    height: 150px;
+  }
+  p{
+    margin-top: 12px;
+    font-size: 18px;
+  }
+  .add-btn-cntr{
+    padding: 0! important;
+  }
+}
+
+.process-modal{
+  img{
+    width: 100px;
+  }
+  p{
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0.4px;
+  }
+}
+
+.bg-song{
+  position: absolute;
+  color: #000;
+  top: 50%;
+  left: 20%;
+  transform: translate(-25%, 50%);
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #fff;
+  padding: 5px;
+  border-top: 1px solid #fff;
+  opacity: 0.7;
+  font-family: 'Shadows Into Light', cursive;
 }
 @import "~igniteui-angular/lib/core/styles/themes/index";
 // Uncomment the following lines if you want to add a custom palette:

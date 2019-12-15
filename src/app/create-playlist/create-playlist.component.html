@@ -1,5 +1,10 @@
 <div class="create-playlist-cntr">
+  <div class="bg-song">
+    <marquee behavior="scroll" direction="left">Experience your own playlist benefits by adding your favourite songs to playlist and access them anywhere, anytime. <i class="fa fa-hand-peace-o"></i></marquee>
+
+  </div>
   <div class="input-cntr">
+    <p class="head-playlist-cntr"> CREATE YOUR PLAYLIST</p>
     <div class="input-cntr-each">
       <label for="">Title <span>*</span> :</label>
       <input type="text" name="" id="title" [(ngModel)]="title">
@@ -20,7 +25,7 @@
       </div>
     </div>
 
-    <div class="divider">
+    <!-- <div class="divider">
         <label for="">Playlist Type :</label>
         <span>
           <input type="radio" id="private" name="playlist-type" value="true">
@@ -30,7 +35,7 @@
           <input type="radio" id="public" name="playlist-type" value="false">
           <label for="public">Public</label>
         </span>
-    </div>
+    </div> -->
 
     <div class="add-btn-cntr">
       <div class="add-btn" (click)="createNewPlaylist()">
@@ -40,3 +45,8 @@
 
   </div>
 </div>
+
+<jw-modal id="process-modal" class="process-modal">
+  <img src="assets/images/process-gif.gif" alt="">
+  <p> Connecting with server....</p>
+</jw-modal>

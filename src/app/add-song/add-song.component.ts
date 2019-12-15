@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { ModalService } from '../modal/modal.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-add-song',
@@ -17,12 +19,14 @@ export class AddSongComponent implements OnInit {
   reviewText: String;
 
 
-  constructor(private _http: HttpService, private modalService: ModalService) { }
+  constructor(private _http: HttpService, private modalService: ModalService, private router: Router) { }
 
   ngOnInit() {
   }
 
   addNewSong() {
+    this.modalService.close('add-review');
+    this.modalService.open('process-modal');
     let postData = {
       "song_title": this.title,
       "artist": this.artist,
@@ -38,14 +42,19 @@ export class AddSongComponent implements OnInit {
           "song_id": songData._id
         }
         this._http.postReviewForSong(reviewData).subscribe(data => {
-
+          this.modalService.close('process-modal');
+          this.router.navigate(['/songs']);
         }, (err) => {
 
         })
+      } else{
+        this.modalService.close('process-modal');
+        this.router.navigate(['/songs']);
       }
     }, (err) => {
 
     })
+
   }
 
   openModal(id: string) {

@@ -43,11 +43,11 @@
     <input type="text" name="" value="{{playListDescription}}" [(ngModel)]="editedDescription">
     <div class="divider">
         <p>
-          <input type="radio" id="private" name="type" value="true">
+          <input type="radio" id="private" name="type" value="true" [(ngModel)]="playListType">
           <label for="private">Private</label>
         </p>
         <p>
-          <input type="radio" id="public" name="type" value="false">
+          <input type="radio" id="public" name="type" value="false" [(ngModel)]="playListType">
           <label for="public">Public</label>
         </p>
     </div>
@@ -56,4 +56,9 @@
         Edit Playlist
       </div>
     </div>
+</jw-modal>
+
+<jw-modal id="process-modal" class="process-modal">
+  <img src="assets/images/process-gif.gif" alt="">
+  <p> Connecting with server....</p>
 </jw-modal>

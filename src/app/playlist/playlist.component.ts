@@ -29,6 +29,7 @@ export class PlaylistComponent implements OnInit {
 
   editedDescription: String;
 
+
   constructor(private _http: HttpService, private route: ActivatedRoute, private modalService: ModalService) { }
 
   ngOnInit() {
@@ -48,8 +49,11 @@ export class PlaylistComponent implements OnInit {
   }
 
   deleteSongFromPlaylist(songId){
+    this.modalService.open('process-modal');
     this._http.deleteSongFromPlaylist(this.currentPlaylistId, songId).subscribe(data => {
-      console.log(data);
+      this.modalService.close('process-modal');
+      this.ngOnInit();
+      this.songsList = null;
     });
   }
 
@@ -64,16 +68,19 @@ export class PlaylistComponent implements OnInit {
   }
 
   editPlaylist(){
+    this.modalService.close('edit-playlist');
+    this.modalService.open('process-modal');
     let radioInp = document.querySelector('input[name="type"]:checked') as HTMLInputElement;
     console.log(radioInp)
     let postData = {
       title: this.editedName,
       description:this.editedDescription,
-      is_private: radioInp.value
+      is_private: this.playListType
     }
 
     this._http.updatePlaylistFields(this.currentPlaylistId, postData).subscribe(data => {
-      console.log(data);
+      this.modalService.close('process-modal');
+      this.ngOnInit();
     });
   }
 

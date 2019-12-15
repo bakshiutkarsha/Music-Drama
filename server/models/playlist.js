@@ -20,7 +20,8 @@ const PlaylistSchema = mongoose.Schema(
   },
   is_private: {
     type: String,
-    required: true
+    required: true,
+    default: 'true'
   }
 });
 

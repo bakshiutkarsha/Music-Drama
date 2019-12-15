@@ -92,8 +92,8 @@ export class HttpService {
     return this.getMethod(URL.getApiUrl().GET_ALL_USERS);
   }
 
-  upadetUser(songId, postData){
-    return this.patchMethod(URL.getApiUrl().UPDATE_USER.replace(':songId', songId), postData);
+  upadetUser(userId, postData){
+    return this.patchMethod(URL.getApiUrl().UPDATE_USER.replace(':userId', userId), postData);
   }
 
 //  PLAYLIST API's

@@ -19,7 +19,7 @@ export class SongsComponent implements OnInit {
 
   selectedSongId: String;
 
-  recentReview: Object;
+  recentReview;
 
   constructor(private _http: HttpService, private route: ActivatedRoute, private modalService: ModalService) { }
 
@@ -43,7 +43,7 @@ export class SongsComponent implements OnInit {
   toggleAccordian(event, songId) {
     this._http.getMostRecentReview(songId).subscribe(data => {
       this.recentReview = data;
-      this.recentReview.time = moment(data.recent_review.submitted_on).format('MMMM Do YYYY, h:mm:ss a')
+      this.recentReview.time = moment(this.recentReview.recent_review.submitted_on).format('MMMM Do YYYY, h:mm:ss a')
       if (event.target.classList.contains('expanded')) {
           event.target.previousElementSibling.classList.remove('expanded');
           event.target.previousElementSibling.classList.add('collapsed');

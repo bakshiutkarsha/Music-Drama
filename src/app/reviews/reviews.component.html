@@ -1,5 +1,5 @@
 <div class="review-cntr">
-  <div *ngIf="reviewList">
+  <div *ngIf="reviewList.length > 0">
     <div *ngFor="let review of reviewList" class="each-review-cntr">
       <p class="reviewer">  {{review.submitted_by}} <i class="fa fa-user"></i></p>
       <div class="review-text">
@@ -13,13 +13,32 @@
       <i class="fa"  [ngClass]="review.rating == 5 ? 'fa-star' : 'fa-star-o'"></i>
     </div>
   </div>
-</div>
-
-<div class="add-btn-cntr">
-  <div class="add-btn" id="add-new-song" (click)="openModal('add-review')">
-    ADD REVIEW
+  <div class="add-btn-cntr">
+    <div class="add-btn" id="add-new-song" (click)="openModal('add-review')">
+      ADD REVIEW
+    </div>
   </div>
 </div>
+
+<div class="" *ngIf="reviewList.length == 0">
+  <div class="generic-first-time">
+    <div class="">
+      <img src="assets/images/first-review.png" alt="">
+      <p>Be the First One to review</p>
+      <div class="add-btn-cntr">
+        <div class="add-btn" id="add-new-song" (click)="openModal('add-review')">
+          ADD REVIEW
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<jw-modal id="process-modal" class="process-modal">
+  <img src="assets/images/process-gif.gif" alt="">
+  <p> Connecting with server....</p>
+</jw-modal>
 
 <jw-modal id="add-review">
     <h1>Add Review</h1>

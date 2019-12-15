@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { ModalService } from '../modal/modal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-playlist',
@@ -13,13 +15,14 @@ export class CreatePlaylistComponent implements OnInit {
 
   songList: Object;
 
-  constructor(private _http: HttpService) { }
+  constructor(private _http: HttpService, private modalService: ModalService, private router: Router) { }
 
   ngOnInit() {
     this.getAllPlaylists();
   }
 
   createNewPlaylist(){
+    this.modalService.open('process-modal');
     let checkboxInp = document.querySelectorAll('input[name=song-id]:checked');
     let radioInp = document.querySelector('input[name="playlist-type"]:checked') as HTMLInputElement;
     let songIDArray = [];
@@ -30,12 +33,12 @@ export class CreatePlaylistComponent implements OnInit {
     let postData = {
       "title": this.title,
       "song_ids": songIDArray,
-      "description": this.description,
-      "is_private": radioInp.value
+      "description": this.description
     }
     console.log(postData)
     this._http.createPlaylist(postData).subscribe(data => {
-      console.log(data);
+      this.modalService.close('process-modal');
+      this.router.navigate(['/playlist']);
     });
   }
 
@@ -45,4 +48,11 @@ export class CreatePlaylistComponent implements OnInit {
     });
   }
 
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
 }

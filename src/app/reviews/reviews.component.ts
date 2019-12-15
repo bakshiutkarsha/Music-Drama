@@ -48,8 +48,11 @@ export class ReviewsComponent implements OnInit {
       "song_id"       : this.id
     }
     console.log(postData);
+    this.modalService.close('add-review');
+    this.modalService.open('process-modal');
     this._http.postReviewForSong(postData).subscribe(data => {
-
+      this.modalService.close('process-modal');
+      this.ngOnInit();
     }, (err)=>{
 
     })
