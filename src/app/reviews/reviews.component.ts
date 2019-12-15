@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService } from '../modal/modal.service';
-
+import Storage from '../common/webStorage';
 
 @Component({
   selector: 'app-reviews',
@@ -17,16 +17,32 @@ export class ReviewsComponent implements OnInit {
   rating: Number;
 
   reviewText: String;
+
+  showReviewButton= true;
+
   constructor(private _http: HttpService, private route: ActivatedRoute, private modalService: ModalService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     console.log(this);
     this._http.getSongReviews(this.id).subscribe(data => {
+      this.checkForCurrentUser(data)
       this.reviewList = data;
     }, (err) => {
       console.log(err);
     })
+  }
+
+  checkForCurrentUser(data){
+      console.log(this.showReviewButton);
+    let currentUser = Storage.getCollection('USER_DETAILS').email;
+    data.forEach(obj => {
+      if(obj.submitted_by == currentUser){
+        this.showReviewButton = false;
+      }
+
+    })
+
   }
 
   openModal(id: string) {

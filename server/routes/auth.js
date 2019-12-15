@@ -5,6 +5,8 @@ const user = require('../models/auth');
 const Promise = require("bluebird");
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
+const redirect = require('./redirect');
 require('dotenv/config');
 
 
@@ -48,7 +50,7 @@ router.post('/validate', async (req, res) => {
     username: req.body.username
   });
 
-  if(userDetails && userDetails.is_active == "true"){
+  if (userDetails && userDetails.is_active == "true") {
     try {
       if (await argon2.verify(userDetails.hash, req.body.password)) {
         let payload = {
@@ -56,7 +58,12 @@ router.post('/validate', async (req, res) => {
           "admin": false
         };
         let token = jwt.sign(payload, authKey);
-        res.json({"token": token, "userId": userDetails._id, "email": req.body.username, 'is_admin': userDetails.is_admin});
+        res.json({
+          "token": token,
+          "userId": userDetails._id,
+          "email": req.body.username,
+          'is_admin': userDetails.is_admin
+        });
       } else {
         res.sendStatus(400).json({
           message: "Password don't Match"
@@ -76,23 +83,48 @@ router.post('/validate', async (req, res) => {
 })
 
 //Get all Users
-router.get('/getAllUsers', async(req, res)=>{
-  try{
-    const item = await user.find({}, {password:0, hash:0});
+router.get('/getAllUsers', async (req, res) => {
+  try {
+    const item = await user.find({}, {
+      password: 0,
+      hash: 0
+    });
     res.json(item);
-  } catch(err){
-    res.json({message :err});
+  } catch (err) {
+    res.json({
+      message: err
+    });
   }
 })
 
 //Deactivate Users
-router.patch('/updateUserDeatils/:userId', async(req, res)=>{
-  try{
-    const item = await user.findOneAndUpdate({_id: req.params.userId}, {$set: req.body });
+router.patch('/updateUserDeatils/:userId', async (req, res) => {
+  try {
+    const item = await user.findOneAndUpdate({
+      _id: req.params.userId
+    }, {
+      $set: req.body
+    });
     res.json(item);
-  } catch(err){
-    res.json({message :err});
+  } catch (err) {
+    res.json({
+      message: err
+    });
   }
 })
+
+
+router.get('/google', passport.authenticate('google', {
+  scope: [
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/userinfo.email'
+  ]
+}))
+
+router.get('/google/callback', passport.authenticate('google', {
+  failureRedirect: '/user'
+}), function() {
+  console.log('here');
+});
 
 module.exports = router;

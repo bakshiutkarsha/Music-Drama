@@ -13,7 +13,7 @@
       <i class="fa"  [ngClass]="review.rating == 5 ? 'fa-star' : 'fa-star-o'"></i>
     </div>
   </div>
-  <div class="add-btn-cntr">
+  <div class="add-btn-cntr" *ngIf="showReviewButton == true">
     <div class="add-btn" id="add-new-song" (click)="openModal('add-review')">
       ADD REVIEW
     </div>
