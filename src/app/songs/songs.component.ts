@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angula
 import { HttpService } from '../http.service';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService } from '../modal/modal.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-songs',
@@ -17,6 +18,8 @@ export class SongsComponent implements OnInit {
   playlists: Object;
 
   selectedSongId: String;
+
+  recentReview: Object;
 
   constructor(private _http: HttpService, private route: ActivatedRoute, private modalService: ModalService) { }
 
@@ -37,20 +40,27 @@ export class SongsComponent implements OnInit {
     return `/assets/images/random-${Math.floor(Math.random() * 5) + 1}.png`;
   }
 
-  toggleAccordian(event) {
-    if (event.target.classList.contains('expanded')) {
-        event.target.previousElementSibling.classList.remove('expanded');
-        event.target.previousElementSibling.classList.add('collapsed');
+  toggleAccordian(event, songId) {
+    this._http.getMostRecentReview(songId).subscribe(data => {
+      this.recentReview = data;
+      this.recentReview.time = moment(data.recent_review.submitted_on).format('MMMM Do YYYY, h:mm:ss a')
+      if (event.target.classList.contains('expanded')) {
+          event.target.previousElementSibling.classList.remove('expanded');
+          event.target.previousElementSibling.classList.add('collapsed');
 
-        event.target.classList.remove('expanded');
-        event.target.classList.add('collapsed');
-    } else if(event.target.classList.contains('collapsed')){
-        event.target.previousElementSibling.classList.add('expanded');
-        event.target.previousElementSibling.classList.remove('collapsed');
+          event.target.classList.remove('expanded');
+          event.target.classList.add('collapsed');
+      } else if(event.target.classList.contains('collapsed')){
+          event.target.previousElementSibling.classList.add('expanded');
+          event.target.previousElementSibling.classList.remove('collapsed');
 
-        event.target.classList.add('expanded');
-        event.target.classList.remove('collapsed');
-    }
+          event.target.classList.add('expanded');
+          event.target.classList.remove('collapsed');
+      }
+    }, (err) => {
+      console.log(err);
+    })
+
   }
 
   searchWithKeywords(){
@@ -89,6 +99,15 @@ export class SongsComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  toggleView(songId, isVisible){
+    let postData = {
+      'is_visible': !isVisible
+    }
+    this._http.updateSong(songId, postData).subscribe(data => {
+      this.playlists = data;
+    });
   }
 
 }

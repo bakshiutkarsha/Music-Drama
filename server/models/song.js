@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const review = require('./review');
 const mongoose_fuzzy_searching = require('mongoose-fuzzy-searching');
 
-// mongoose.set('debug', true);
+mongoose.set('debug', true);
 const SongSchema = mongoose.Schema({
     song_title: {
       type: String,
@@ -34,11 +34,13 @@ const SongSchema = mongoose.Schema({
     }
 
 });
-SongSchema.index({
-  song_title: 'text',
-  artist: 'text',
-  album: 'text',
-  genre: 'text',
-  year: 'number'
-})
+// SongSchema.index({
+//   song_title: 'text',
+//   artist: 'text',
+//   album: 'text',
+//   genre: 'text',
+//   year: 'number'
+// })
+SongSchema.index({'$**': 'text'})
+
 module.exports = mongoose.model('Songs', SongSchema);

@@ -65,6 +65,10 @@ export class HttpService {
     return this.postMethod(URL.getApiUrl().SEARCH_SONG, searchData);
   }
 
+  updateSong(songId, postData){
+    return this.patchMethod(URL.getApiUrl().UPDATE_SONG.replace(':songId', songId), postData);
+  }
+
 // REVIEW PAGE API's
 
   getSongReviews(songId) {
@@ -76,6 +80,9 @@ export class HttpService {
     return this.postMethod(URL.getApiUrl().CREATE_REVIEW, postData);
   }
 
+  getMostRecentReview(songId){
+    return this.getMethod(URL.getApiUrl().GET_RECENT_REVIEW.replace(':songId', songId));
+  }
 // AUTHENTICATE AND USER
   authenticateUser(postData){
     return this.postMethod(URL.getApiUrl().AUTHENTICATE, postData);
@@ -85,8 +92,8 @@ export class HttpService {
     return this.getMethod(URL.getApiUrl().GET_ALL_USERS);
   }
 
-  upadetUser(userId, postData){
-    return this.patchMethod(URL.getApiUrl(userId).UPDATE_USER.replace(':userId', userId), postData);
+  upadetUser(songId, postData){
+    return this.patchMethod(URL.getApiUrl().UPDATE_USER.replace(':songId', songId), postData);
   }
 
 //  PLAYLIST API's

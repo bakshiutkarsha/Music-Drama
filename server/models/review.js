@@ -15,6 +15,10 @@ const ReviewSchema = mongoose.Schema({
   review_text: {
     type: String,
     required: false
+  },
+  submitted_on:{
+    type: Date,
+    required: true
   }
 });
 

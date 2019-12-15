@@ -38,12 +38,17 @@
               <i class="fa fa-star"></i>  {{song.avg_rating}}<span>/5</span>
             </div>
             <div class="extra-detail-cntr collapsed">
-              <div class="extra-details">
-                <p>Submitted By: {{song.submitted_by}}</p>
+              <div class="extra-details" *ngIf="recentReview">
+                <p>Visibility: {{song.is_visible == 'true' ? 'Public' : 'Hidden'}} <i class="fa fa-pencil" (click)='toggleView(song._id, song.is_visible)'></i></p>
+                <p>Total Reviews: {{recentReview.count}}</p>
+                <p>Most Recent Review ({{recentReview.time}}) : {{recentReview.recent_review.review_text}} </p>
                 <p [routerLink]="[song._id, 'review']" class="reviewLink">View Reviews For this Song</p>
               </div>
             </div>
-            <div class="collapsed know-more" (click)="toggleAccordian($event)">
+            <div class="" *ngIf="!song.avg_rating">
+              <p [routerLink]="[song._id, 'review']" class="reviewLink">Give Review For this Song</p>
+            </div>
+            <div class="collapsed know-more" (click)="toggleAccordian($event, song._id)" *ngIf="song.avg_rating">
               View Details
             </div>
 

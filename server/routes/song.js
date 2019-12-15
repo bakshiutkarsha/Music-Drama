@@ -21,7 +21,7 @@ router.post('/search', async (req, res) =>{
       $text: {
         $search: req.body.keyword
       }
-    }).sort({avg_rating: -1});
+    });
     res.json(songList);
   } catch (err) {
     console.log(err);
@@ -31,17 +31,6 @@ router.post('/search', async (req, res) =>{
   }
 });
 
-//GET SPECIFIC ITEM
-router.get('/items/:itemId', async (req, res) => {
-  try {
-    const item = await lib.findById(req.params.itemId);
-    res.json(item);
-  } catch (err) {
-    res.json({
-      message: err
-    });
-  }
-});
 
 //SAVE NEW SONG
 router.post('/createNewSong', async (req, res) => {
@@ -68,13 +57,13 @@ router.post('/createNewSong', async (req, res) => {
 
 
 
-//DELETE AN ITEM
-router.delete('/items/:itemId', async (req, res) => {
+//DELETE AN SONG
+router.delete('/deleteSong/:songId', async (req, res) => {
   try {
-    const item = await lib.remove({
-      _id: req.params.itemId
+    const song = await song.remove({
+      _id: req.params.songId
     });
-    res.json(item);
+    res.json(song);
   } catch (err) {
     res.json({
       message: err
@@ -82,16 +71,11 @@ router.delete('/items/:itemId', async (req, res) => {
   }
 });
 
-//UPDATE AN ITEM
-router.patch('/items/:itemId', async (req, res) => {
-  console.log(req.body);
+//UPDATE A SONG
+router.patch('/updateSong/:songId', async (req, res) => {
   try {
-    const item = await lib.updateMany({
-      _id: req.params.itemId
-    }, {
-      $set: req.body
-    });
-    res.json(item);
+    const updatedSong = await song.updateMany({_id: req.params.songId}, {$set: req.body });
+    res.json(updatedSong);
   } catch (err) {
     res.json({
       message: err

@@ -36,8 +36,8 @@ router.post('/updatePlaylistSong', async (req, res) => {
 });
 
 router.get('/getSongsForPlaylist/:playlistId', async (req, res) => {
-  let songArray = []
   try{
+    let songArray = []
     const playlist = await Playlist.findOne({_id: req.params.playlistId});
     for(let i = 0; i < playlist.song_ids.length; i++){
       const song = await Song.findOne({_id: playlist.song_ids[i]});
@@ -92,7 +92,7 @@ router.get('/getFilteredPlaylist/:userId', async (req, res) => {
 
 router.patch('/updatePlaylist/:playlistId', async (req, res) => {
   try{
-    const item = await lib.findOneAndUpdate({_id: req.params.playlistId}, {$set: req.body });
+    const item = await Playlist.findOneAndUpdate({_id: req.params.playlistId}, {$set: req.body });
     res.json(item);
   } catch(err){
     res.json({message :err});

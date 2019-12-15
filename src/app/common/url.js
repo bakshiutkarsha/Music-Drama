@@ -4,9 +4,12 @@ const API_URLS =  {
   GET_ALL_SONGS:   ':BASE_URL:/songs/getAllSongs',
   CREATE_SONG:  ':BASE_URL:/songs/createNewSong',
   SEARCH_SONG:  ':BASE_URL:/songs/search',
+  UPDATE_SONG:  ':BASE_URL:/songs/updateSong/:songId',
+
 
   GET_SONG_REVIEW:   ':BASE_URL:/reviews/getReviewForSong/:songId',
   CREATE_REVIEW:  ':BASE_URL:/reviews/postReviewForsong',
+  GET_RECENT_REVIEW: ':BASE_URL:/reviews/getCountAndMostRecentReview/:songId',
 
   AUTHENTICATE:  ':BASE_URL:/auth/validate',
   GET_ALL_USERS: ':BASE_URL:/auth/getAllUsers',
