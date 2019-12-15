@@ -11,8 +11,8 @@ export class HttpService {
   currentUser;
 
   constructor(private http: HttpClient) {
-      console.log(this.currentUser);
-      this.currentUser = Storage.getCollection('USER_DETAILS');
+
+        this.currentUser = Storage.getCollection('USER_DETAILS');
 
   }
 
@@ -85,7 +85,7 @@ export class HttpService {
   }
 // AUTHENTICATE AND USER
   authenticateUser(postData){
-    return this.postMethod(URL.getApiUrl().AUTHENTICATE, postData);
+    return this.http.post(URL.getApiUrl().AUTHENTICATE, postData);
   }
 
   getAllUsers(){
@@ -127,5 +127,8 @@ export class HttpService {
     return this.patchMethod(URL.getApiUrl().UPDATE_PLAYLIST_FIELDS.replace(':playlistId', playlistId), postData);
   }
 
+  deletePlaylist(playlistId){
+    return this.deleteMethod(URL.getApiUrl().DELETE_PLAYLIST.replace(':playlistId', playlistId));
+  }
 
 }

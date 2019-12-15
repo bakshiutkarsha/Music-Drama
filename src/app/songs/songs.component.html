@@ -20,7 +20,7 @@
     <div class="song-list-cntr">
       <div *ngIf="songList">
         <div *ngFor="let song of songList">
-          <div class="each-song" [attr.data-song-id]="song._id">
+          <div class="each-song" [attr.data-song-id]="song._id" *ngIf="song.is_visible == 'true' || currentUser.is_admin == 'true' ">
             <!-- <div class="img-cntr">
               <img src={{selectRandom()}} alt="">
             </div> -->
@@ -39,7 +39,7 @@
             </div>
             <div class="extra-detail-cntr collapsed">
               <div class="extra-details" *ngIf="recentReview">
-                <p>Visibility: {{song.is_visible == 'true' ? 'Public' : 'Hidden'}} <i class="fa fa-pencil" (click)='toggleView(song._id, song.is_visible)'></i></p>
+                <p *ngIf="currentUser.is_admin == 'true'">Visibility: {{song.is_visible == 'true' ? 'Public' : 'Hidden'}} <i class="fa fa-pencil" (click)='toggleView(song._id, song.is_visible)'></i></p>
                 <p>Total Reviews: {{recentReview.count}}</p>
                 <p>Most Recent Review ({{recentReview.time}}) : {{recentReview.recent_review.review_text}} </p>
                 <p [routerLink]="[song._id, 'review']" class="reviewLink">View Reviews For this Song</p>
@@ -75,3 +75,8 @@
     </div>
   </jw-modal>
 </div>
+
+<jw-modal id="process-modal" class="process-modal">
+  <img src="assets/images/process-gif.gif" alt="">
+  <p> Connecting with server....</p>
+</jw-modal>

@@ -4,7 +4,8 @@ const UserSchema = mongoose.Schema({
   password:{type: String, required: true},
   hash:{type: String, required: false},
   is_active: {type: String, required: false, default: true},
-  is_admin:{type: String, required: false, default: false}
+  is_admin:{type: String, required: false, default: false},
+  is_verified:{type: String, required: false, default: false}
 });
 
 module.exports = mongoose.model('Users', UserSchema);

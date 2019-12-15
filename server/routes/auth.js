@@ -56,7 +56,7 @@ router.post('/validate', async (req, res) => {
           "admin": false
         };
         let token = jwt.sign(payload, authKey);
-        res.json({"token": token, "userId": userDetails._id, "email": req.body.username});
+        res.json({"token": token, "userId": userDetails._id, "email": req.body.username, 'is_admin': userDetails.is_admin});
       } else {
         res.sendStatus(400).json({
           message: "Password don't Match"

@@ -21,7 +21,8 @@ const API_URLS =  {
   UPDATE_PLAYLIST_SONGS: ':BASE_URL:/playlist/updatePlaylistSong',
   GET_ALL_PLAYLISTS: ':BASE_URL:/playlist/getAllPlaylists',
   GET_FILTERED_PLAYLISTS: ':BASE_URL:/playlist/getFilteredPlaylist/:userId',
-  UPDATE_PLAYLIST_FIELDS: ':BASE_URL:/playlist/updatePlaylist/:playlistId'
+  UPDATE_PLAYLIST_FIELDS: ':BASE_URL:/playlist/updatePlaylist/:playlistId',
+  DELETE_PLAYLIST: ':BASE_URL:/playlist/deletePlaylist/:playlistId',
 }
 
 function getApiUrl() {

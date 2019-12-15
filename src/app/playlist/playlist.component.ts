@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ModalService } from '../modal/modal.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import Storage from '../common/webStorage';
+import Utils from '../common/utils';
 
 
 @Component({
@@ -29,14 +30,25 @@ export class PlaylistComponent implements OnInit {
 
   editedDescription: String;
 
+  adminPlaylist: Object;
+
+  isAdmin: Boolean;
 
   constructor(private _http: HttpService, private route: ActivatedRoute, private modalService: ModalService) { }
 
   ngOnInit() {
-    this._http.getFilteredPlaylist().subscribe(data => {
-      this.playlists = data;
-    });
+    this.isAdmin = Utils.isUserAdmin();
+    if(this.isAdmin){
+      this._http.getAllPlaylists().subscribe(data => {
+        this.adminPlaylist = data;
+      });
+    } else {
+      this._http.getFilteredPlaylist().subscribe(data => {
+        this.playlists = data;
+      });
+    }
   }
+
 
   getSongsFromPlaylist(id, title, description){
     this._http.getSongsForPlaylist(id).subscribe(data => {
@@ -82,6 +94,15 @@ export class PlaylistComponent implements OnInit {
       this.modalService.close('process-modal');
       this.ngOnInit();
     });
+  }
+
+  deletePlaylist(playlistId, event){
+    this.modalService.open('process-modal');
+    this._http.deletePlaylist(playlistId).subscribe(data => {
+      this.modalService.close('process-modal');
+      this.ngOnInit();
+    });
+    event.stopPropagation();
   }
 
 }

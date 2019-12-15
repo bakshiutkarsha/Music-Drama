@@ -98,4 +98,14 @@ router.patch('/updatePlaylist/:playlistId', async (req, res) => {
     res.json({message :err});
   }
 });
+
+router.delete('/deletePlaylist/:playlistId', async (req, res) => {
+  try{
+    const selectedPlaylist = await Playlist.remove({_id: req.params.playlistId});
+    res.json(selectedPlaylist);
+  } catch(err){
+    res.json({message :err});
+  }
+});
+
 module.exports = router;

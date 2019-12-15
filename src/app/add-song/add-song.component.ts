@@ -34,14 +34,14 @@ export class AddSongComponent implements OnInit {
       "year": this.year,
       "genre": this.genre
     }
-    this._http.postNewSong(postData).subscribe(songData => {
+    this._http.postNewSong(postData).subscribe(data => {
       if (this.rating) {
         let reviewData = {
           "review_text": this.reviewText,
           "rating": this.rating,
-          "song_id": songData._id
+          "song_id": data._id
         }
-        this._http.postReviewForSong(reviewData).subscribe(data => {
+        this._http.postReviewForSong(reviewData).subscribe(reviewData => {
           this.modalService.close('process-modal');
           this.router.navigate(['/songs']);
         }, (err) => {

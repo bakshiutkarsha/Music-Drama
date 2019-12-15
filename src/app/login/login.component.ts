@@ -29,10 +29,10 @@ export class LoginComponent implements OnInit {
     console.log(postData);
     this._http.authenticateUser(postData).subscribe(data => {
       Storage.setCollection('USER_DETAILS', data);
-      this.loginUserHead.emit(data);
+      // this.loginUserHead.emit(data);
       console.log(data);
     }, (err)=>{
-      this.loginUserHead.emit(err);
+      // this.loginUserHead.emit(err);
     })
   }
 }

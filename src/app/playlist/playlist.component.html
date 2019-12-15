@@ -8,16 +8,31 @@
     </div>
   </div>
 
-  <div class="each-playlist-cntr" *ngIf="playlists">
+  <div class="each-playlist-cntr" *ngIf="adminPlaylist && isAdmin">
     <p class="playlist-head">YOUR PLAYLISTS</p>
-    <div class="each-playlist" *ngFor="let playlist of playlists.userList" (click)=getSongsFromPlaylist(playlist._id,playlist.title,playlist.description)>
-      <p>{{playlist.title}} <i class="fa fa-pencil" (click)="openPlaylistEditModal('edit-playlist', $event, playlist._id,playlist.title,playlist.description, playlist.is_private)"></i></p>
+    <div class="each-playlist" *ngFor="let playlist of adminPlaylist" (click)=getSongsFromPlaylist(playlist._id,playlist.title,playlist.description)>
+      <p>{{playlist.title}}
+        <i class="fa fa-trash-o" (click)=deletePlaylist(playlist._id,$event)></i>
+        <i class="fa fa-pencil" (click)="openPlaylistEditModal('edit-playlist', $event, playlist._id,playlist.title,playlist.description, playlist.is_private)"></i>
+
+      </p>
       <p>{{playlist.description}}</p>
       <p>Type :{{playlist.is_private == 'true' ? ' Private':' Public'}}</p>
     </div>
   </div>
 
-  <div class="each-playlist-cntr" *ngIf="playlists">
+  <div class="each-playlist-cntr" *ngIf="playlists && !isAdmin">
+    <p class="playlist-head">YOUR PLAYLISTS</p>
+    <div class="each-playlist" *ngFor="let playlist of playlists.userList" (click)=getSongsFromPlaylist(playlist._id,playlist.title,playlist.description)>
+      <p>{{playlist.title}}
+        <i class="fa fa-pencil" (click)="openPlaylistEditModal('edit-playlist', $event, playlist._id,playlist.title,playlist.description, playlist.is_private)"></i>
+      </p>
+      <p>{{playlist.description}}</p>
+      <p>Type :{{playlist.is_private == 'true' ? ' Private':' Public'}}</p>
+    </div>
+  </div>
+
+  <div class="each-playlist-cntr" *ngIf="playlists && !isAdmin">
     <p class="playlist-head">OTHERS PLAYLISTS</p>
     <div class="each-playlist others" *ngFor="let playlist of playlists.otherList" (click)=getSongsFromPlaylist(playlist._id,playlist.title,playlist.description)>
       <p>{{playlist.title}}</p>

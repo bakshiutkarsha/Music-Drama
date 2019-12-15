@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angula
 import { HttpService } from '../http.service';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService } from '../modal/modal.service';
+import Storage from '../common/webStorage';
 import * as moment from 'moment';
 
 @Component({
@@ -21,9 +22,15 @@ export class SongsComponent implements OnInit {
 
   recentReview;
 
+  currentUser;
+
+  isVisible;
+
   constructor(private _http: HttpService, private route: ActivatedRoute, private modalService: ModalService) { }
 
+
   ngOnInit() {
+    this.currentUser =  Storage.getCollection('USER_DETAILS');
     if(this.searchText){
       this._http.searchSongs({"keyword": this.searchText}).subscribe(data => {
         this.songList = data;
@@ -102,11 +109,14 @@ export class SongsComponent implements OnInit {
   }
 
   toggleView(songId, isVisible){
+    this.isVisible = !this.isVisible;
+    this.modalService.open('process-modal');
     let postData = {
-      'is_visible': !isVisible
+      'is_visible': this.isVisible
     }
     this._http.updateSong(songId, postData).subscribe(data => {
-      this.playlists = data;
+      this.modalService.close('process-modal');
+      this.ngOnInit();
     });
   }
 
