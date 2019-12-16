@@ -8,7 +8,7 @@
       <p class="head-text">ADD YOUR FAVOURITE SONGS:</p>
       <div class="input-cntr-each">
         <label for="">Title <span>*</span> :</label>
-        <input type="text" name="" id="title" [(ngModel)]="title" (keyup)="checkAllValues()">
+        <input type="text" name="" id="title" [(ngModel)]="title" pattern="/^[A-Za-z]/" (keyup)="checkAllValues()"  ng-pattern-restrict="^[A-Za-z0-9]*$">
       </div>
 
       <div class="input-cntr-each">
@@ -19,7 +19,7 @@
       <div class="divider">
         <div class="input-cntr-each col-width-50">
           <label for="">Year :</label>
-          <input type="number" name="" id="year" [(ngModel)]="year" (keyup)="checkAllValues()" maxlength="4">
+          <input type="text" name="" id="year" [(ngModel)]="year" (keyup)="checkAllValues()" maxlength="4">
         </div>
         <div class="input-cntr-each col-width-50">
           <label for="">Album :</label>

@@ -51,7 +51,7 @@ export class SongsComponent implements OnInit {
     this._http.getMostRecentReview(songId).subscribe(data => {
       this.recentReview = data;
       this.recentReview.time = moment(this.recentReview.recent_review.submitted_on).format('MMMM Do YYYY, h:mm:ss a')
-      
+
       if (event.target.classList.contains('expanded')) {
           event.target.previousElementSibling.classList.remove('expanded');
           event.target.previousElementSibling.classList.add('collapsed');
@@ -109,11 +109,16 @@ export class SongsComponent implements OnInit {
     this.modalService.close(id);
   }
 
-  toggleView(songId, isVisible){
-    this.isVisible = !this.isVisible;
+  toggleView(songId, visibility){
+    let newVisibility;
+    if(visibility == 'true'){
+      newVisibility = 'false'
+    } else {
+      newVisibility = 'true'
+    }
     this.modalService.open('process-modal');
     let postData = {
-      'is_visible': this.isVisible
+      'is_visible': newVisibility
     }
     this._http.updateSong(songId, postData).subscribe(data => {
       this.modalService.close('process-modal');

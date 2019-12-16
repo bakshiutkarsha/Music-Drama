@@ -13,9 +13,9 @@ module.exports = (passport)=>{
         done(null, user);
     });
     passport.use(new GoogleStrategy({
-            clientID: '426647789459-9diespc6g00npta1djuh4uebqej49khm.apps.googleusercontent.com',
-            clientSecret: '4Ymd_mCCGm80BRM06rm74U-N',
-            callbackURL: 'http://localhost:3000/route/auth/google/callback'
+            clientID: '426647789459-lvaagtchcchujet57pnh0f7halr365mt.apps.googleusercontent.com',
+            clientSecret: '6KfoQ9gLurI9yuatQOjYiwkU',
+            callbackURL: 'http://localhost:3000/passport/auth/google/callback'
         },
         (token, refreshToken, profile, done) => {
            console.log(profile.username[0].value);

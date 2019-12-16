@@ -19,11 +19,22 @@ export class AddSongComponent implements OnInit {
   reviewText: String;
   disabled = true;
 
-
   constructor(private _http: HttpService, private modalService: ModalService, private router: Router) { }
 
   ngOnInit() {
+
   }
+
+  sanitizeString(unsafe) {
+      return unsafe
+           .replace(/&<>"=\/'./g, "")
+           .replace(/</g, "")
+           .replace(/>/g, "")
+           .replace(/"/g, "")
+           .replace(/=/g, "")
+           .replace(/\//ig,"")
+           .replace(/'/g, "");
+   }
 
   addNewSong() {
     this.modalService.close('add-review');
@@ -40,7 +51,7 @@ export class AddSongComponent implements OnInit {
         let reviewData = {
           "review_text": this.reviewText,
           "rating": this.rating,
-          "song_id": data._id
+          "song_id": data['_id']
         }
         this._http.postReviewForSong(reviewData).subscribe(reviewData => {
           this.modalService.close('process-modal');

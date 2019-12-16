@@ -23,6 +23,17 @@ export class CreatePlaylistComponent implements OnInit {
     this.getAllPlaylists();
   }
 
+  sanitizeString(unsafe) {
+      return unsafe
+           .replace(/&<>"=\/'./g, "")
+           .replace(/</g, "")
+           .replace(/>/g, "")
+           .replace(/"/g, "")
+           .replace(/=/g, "")
+           .replace(/\//ig,"")
+           .replace(/'/g, "");
+   }
+
   createNewPlaylist(){
     this.modalService.open('process-modal');
     let checkboxInp = document.querySelectorAll('input[name=song-id]:checked');
@@ -33,9 +44,9 @@ export class CreatePlaylistComponent implements OnInit {
     }
 
     let postData = {
-      "title": this.title,
+      "title": this.sanitizeString(this.title),
       "song_ids": songIDArray,
-      "description": this.description
+      "description": this.sanitizeString(this.description)
     }
     console.log(postData)
     this._http.createPlaylist(postData).subscribe(data => {

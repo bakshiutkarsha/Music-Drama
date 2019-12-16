@@ -5,8 +5,6 @@ const user = require('../models/auth');
 const Promise = require("bluebird");
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
-const passport = require('passport');
-const Redirect = require('./redirect');
 var nodemailer = require("nodemailer");
 require('dotenv/config');
 const authKey = process.env.SECRET_KEY;
@@ -204,21 +202,6 @@ router.post('/validate', async (req, res) => {
         }
       });
     });
-
-    //Passport for google verification and redirection
-    Redirect(passport); router.use(passport.initialize());
-
-    router.get('/auth/google', passport.authenticate('google', {
-      scope: [
-        'https://www.googleapis.com/auth/userinfo.profile',
-        'https://www.googleapis.com/auth/userinfo.email'
-      ]
-    }));
-
-    router.get('/auth/google/callback', passport.authenticate('google', {
-      failureRedirect: '/auth'
-    }), Redirect.google_authenticate);
-
 
 
     module.exports = router;

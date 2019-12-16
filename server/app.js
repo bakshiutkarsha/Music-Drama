@@ -6,6 +6,7 @@ const reviewRoute = require('./routes/review');
 const authRoute = require('./routes/auth');
 const songRoute = require('./routes/song');
 const playlistRoute = require('./routes/playlist');
+const passportRoute = require('./routes/passport');
 const cors = require('cors');
 const path = require('path');
 const middleware = require('./middleware');
@@ -29,16 +30,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-// app.use(express.static(path.join(__dirname, '../src')));
 app.use(express.static('../src'));
 app.use('/auth', authRoute);
+app.use('/passport', passportRoute);
 
-// securedRoutes.use(/* auth-middleware from above */)
-// securedRoutes.get('path1', /* ... */)
-// const ProtectedRoutes = express.Router();
-// app.use('/api', middleware.checkToken);
-
-// app.use('/', middleware.checkToken);
 app.use('/reviews', reviewRoute);
 app.use('/songs', songRoute);
 app.use('/playlist', playlistRoute);

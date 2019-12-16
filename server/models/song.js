@@ -17,7 +17,7 @@ const SongSchema = mongoose.Schema({
       required: false
     },
     year: {
-      type: Number,
+      type: String,
       required: false
     },
     genre: {
