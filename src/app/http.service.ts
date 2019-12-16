@@ -83,7 +83,6 @@ export class HttpService {
 
   postReviewForSong(postData){
     postData.submitted_by = this.currentUser.username;
-    console.log(URL.getApiUrl().CREATE_REVIEW);
     return this.postMethod(URL.getApiUrl().CREATE_REVIEW, postData);
   }
 
@@ -105,6 +104,10 @@ export class HttpService {
 
   registerUser(postData){
     return this.postMethod(URL.getApiUrl().REGISTER_USER, postData);
+  }
+
+  resendEmail(username){
+    return this.getMethod(URL.getApiUrl().RESEND_EMAIL.replace(':username', username));
   }
 
 //  PLAYLIST API's

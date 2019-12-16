@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
 
   emailErrorText = false;
 
+  showResendButton = false;
+
   @Output() loginUserHead = new EventEmitter();
 
 
@@ -31,14 +33,20 @@ export class LoginComponent implements OnInit {
   }
 
   registerUser(){
+    this.modalService.open('process-modal');
     let postData = {
       "username"  : this.email,
       "password"  : this.password
     }
     this._http.registerUser(postData).subscribe(data => {
-
+      this.errorText = "Please Check your email to verify your account!!";
+      this.modalService.close('process-modal');
+      this.modalService.open('callback-modal');
+      console.log(data);
     }, (err)=>{
-
+      this.errorText = err.error;
+      this.modalService.close('process-modal');
+      this.modalService.open('callback-modal');
     })
   }
 
@@ -50,7 +58,7 @@ export class LoginComponent implements OnInit {
     }
     console.log(postData);
     this._http.authenticateUser(postData).subscribe(data => {
-      data = 'true';
+      data.is_authenticated = 'true';
       Storage.setCollection('USER_DETAILS', data);
       this.errorText ="Successfully Logged In!!";
       this.modalService.close('process-modal');
@@ -59,6 +67,10 @@ export class LoginComponent implements OnInit {
 
       console.log(data);
     }, (err)=>{
+        if(err.status === 500){
+          this.showResendButton =  true;
+        }
+        Storage.setCollection('USER_DETAILS', {'is_authenticated':'false', 'is_admin': 'false'})
         this.errorText = err.error.message;
         this.modalService.close('process-modal');
         this.modalService.open('callback-modal');
@@ -72,12 +84,28 @@ export class LoginComponent implements OnInit {
   }
 
   validateEmail(){
-    if(!this.validateEmailRegex()){
+    if(!this.validateEmailRegex() && this.email != 'site manager'){
       this.emailErrorText = true;
     } else{
       this.emailErrorText = false;
     }
   }
+
+  resendEmail(){
+    this.modalService.open('process-modal');
+      this._http.resendEmail(this.email).subscribe(data => {
+        // this.errorText = "Please Check your email to verify your account!!";
+        this.modalService.close('process-modal');
+        this.modalService.close('callback-modal');
+        // this.modalService.open('callback-modal');
+        console.log(data);
+      }, (err)=>{
+        console.log(err);
+        this.errorText = err;
+        this.modalService.close('process-modal');
+        this.modalService.open('callback-modal');
+      })
+    }
 
   checkAllValues(){
     if(this.email && this.password && !this.emailErrorText){

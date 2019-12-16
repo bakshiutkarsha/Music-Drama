@@ -51,6 +51,7 @@ export class SongsComponent implements OnInit {
     this._http.getMostRecentReview(songId).subscribe(data => {
       this.recentReview = data;
       this.recentReview.time = moment(this.recentReview.recent_review.submitted_on).format('MMMM Do YYYY, h:mm:ss a')
+      
       if (event.target.classList.contains('expanded')) {
           event.target.previousElementSibling.classList.remove('expanded');
           event.target.previousElementSibling.classList.add('collapsed');

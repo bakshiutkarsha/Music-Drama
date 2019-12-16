@@ -27,5 +27,12 @@
 </jw-modal>
 
 <jw-modal id="callback-modal" class="process-modal">
+  <div class="" *ngIf="showResendButton">
+    <div class="add-btn-cntr">
+      <div class="add-btn" (click)="resendEmail()">
+        Resend Email
+      </div>
+    </div>
+  </div>
   <p> {{errorText}}</p>
 </jw-modal>

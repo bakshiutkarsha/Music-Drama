@@ -14,7 +14,10 @@ const API_URLS =  {
 
   AUTHENTICATE:  ':BASE_URL:/auth/validate',
   GET_ALL_USERS: ':BASE_URL:/auth/getAllUsers',
+  REGISTER_USER: ':BASE_URL:/auth/new',
+  RESEND_EMAIL:':BASE_URL:/auth/resend/:username',
   UPDATE_USER: ':BASE_URL:/auth/updateUserDeatils/:userId',
+
 
   CREATE_PLAYLIST: ':BASE_URL:/playlist/createNewPlaylist',
   DELETE_SONG_FROM_PLAYLIST: ':BASE_URL:/playlist/deleteFromPlaylist/:playlistId/:songId',

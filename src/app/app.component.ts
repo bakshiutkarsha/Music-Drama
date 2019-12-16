@@ -19,8 +19,9 @@ export class AppComponent implements OnInit{
     let userDetails = Storage.getCollection('USER_DETAILS');
     if(userDetails && userDetails.username){
       this.currentUserName = userDetails.username;
+      this.isAuthenticated = true;
     } else {
-      this.isAuthenticated = false
+      this.isAuthenticated = false;
     }
   }
 
