@@ -2,7 +2,8 @@ import Storage from './webStorage';
 
 export default{
   isUserAdmin(){
-    if(Storage.getCollection('USER_DETAILS').is_admin == 'true'){
+    let userDetails = Storage.getCollection('USER_DETAILS');
+    if(userDetails != null && userDetails.is_admin == 'true'){
       return true;
     } else {
       return false;

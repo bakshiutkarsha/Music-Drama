@@ -16,7 +16,7 @@ export class AppComponent implements OnInit{
     this.isAdmin = Utils.isUserAdmin();
     let userDetails = Storage.getCollection('USER_DETAILS');
     if(userDetails){
-      this.currentUserName = userDetails.email;
+      this.currentUserName = userDetails.username;
     }
   }
 

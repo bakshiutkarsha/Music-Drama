@@ -35,7 +35,7 @@ export class ReviewsComponent implements OnInit {
 
   checkForCurrentUser(data){
       console.log(this.showReviewButton);
-    let currentUser = Storage.getCollection('USER_DETAILS').email;
+    let currentUser = Storage.getCollection('USER_DETAILS').username;
     data.forEach(obj => {
       if(obj.submitted_by == currentUser){
         this.showReviewButton = false;

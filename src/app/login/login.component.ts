@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       this.errorText ="Successfully Logged In!!";
       this.modalService.close('process-modal');
       this.modalService.open('callback-modal');
-      this.router.navigate(['/']);
+      this.router.navigate(['/songs']);
 
       console.log(data);
     }, (err)=>{

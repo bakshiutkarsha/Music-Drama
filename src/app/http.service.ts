@@ -11,9 +11,12 @@ export class HttpService {
   currentUser;
 
   constructor(private http: HttpClient) {
-
-        this.currentUser = Storage.getCollection('USER_DETAILS');
-
+    console.log(this.currentUser == undefined);
+    if(this.currentUser == undefined){
+      Storage.setCollection('USER_DETAILS', {"is_admin":"false", "is_authenticated":"false"});
+    } else {
+      this.currentUser = Storage.getCollection('USER_DETAILS');
+    }
   }
 
   createHeaderOptions(){
@@ -28,9 +31,11 @@ export class HttpService {
   }
 
   getMethod(url){
-    return this.http.get(url, {
-      headers: this.createHeaderOptions().headers
-    });
+    return this.http.get(url
+    //   {
+    //   headers: this.createHeaderOptions().headers
+    // }
+  );
   }
 
   postMethod(url, data){
@@ -76,7 +81,7 @@ export class HttpService {
   }
 
   postReviewForSong(postData){
-    postData.submitted_by = this.currentUser.email;
+    postData.submitted_by = this.currentUser.username;
     return this.postMethod(URL.getApiUrl().CREATE_REVIEW, postData);
   }
 
