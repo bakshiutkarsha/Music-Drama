@@ -7,7 +7,7 @@
     <p class="head-playlist-cntr"> CREATE YOUR PLAYLIST</p>
     <div class="input-cntr-each">
       <label for="">Title <span>*</span> :</label>
-      <input type="text" name="" id="title" [(ngModel)]="title">
+      <input type="text" name="" id="title" [(ngModel)]="title" (keyup)="checkAllValues()">
     </div>
 
     <div class="input-cntr-each">
@@ -19,7 +19,7 @@
       <p>SONG LIST</p>
       <div class="song-list-cntr" *ngFor="let song of songList">
         <div class="song-list-each">
-            <input type="checkbox" name="song-id" value="{{song._id}}" id="{{song._id}}">
+            <input type="checkbox" name="song-id" value="{{song._id}}" id="{{song._id}}" (change)="checkAllValues()">
             <label for="{{song._id}}">{{song.song_title}}</label>
         </div>
       </div>
@@ -38,7 +38,7 @@
     </div> -->
 
     <div class="add-btn-cntr">
-      <div class="add-btn" (click)="createNewPlaylist()">
+      <div class="add-btn" (click)="createNewPlaylist()" [ngClass]="disabled ? 'disabled' : ''">
         Create Playlist
       </div>
     </div>

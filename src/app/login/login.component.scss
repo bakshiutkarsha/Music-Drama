@@ -28,11 +28,22 @@
     background: #36215a;
     color: #fff;
     text-align: center;
+    cursor: pointer;
+    &.disabled{
+      cursor: no-drop;
+      background: #a5a5a5;
+      pointer-events: none;
+    }
   }
   .input-cntr{
     padding: 15px;
+    .error{
+      color: #960404;
+      font-size: 13px;
+    }
   }
   .details{
     padding: 15px;
   }
+
 }

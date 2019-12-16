@@ -18,6 +18,10 @@ export class LoginComponent implements OnInit {
 
   errorText: String;
 
+  disabled = true;
+
+  emailErrorText = false;
+
   @Output() loginUserHead = new EventEmitter();
 
 
@@ -46,5 +50,27 @@ export class LoginComponent implements OnInit {
         this.modalService.close('process-modal');
         this.modalService.open('callback-modal');
     })
+  }
+
+  validateEmailRegex() {
+    let email = this.email;
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  validateEmail(){
+    if(!this.validateEmailRegex()){
+      this.emailErrorText = true;
+    } else{
+      this.emailErrorText = false;
+    }
+  }
+
+  checkAllValues(){
+    if(this.email && this.password && !this.emailErrorText){
+      this.disabled = false;
+    } else {
+      this.disabled = true;
+    }
   }
 }

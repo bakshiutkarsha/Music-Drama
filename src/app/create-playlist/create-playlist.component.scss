@@ -37,4 +37,11 @@
   .bg-song{
     width: 40%;
   }
+  .add-btn{
+    &.disabled{
+      cursor: no-drop;
+      background: #a5a5a5;
+      pointer-events: none;
+    }
+  }
 }

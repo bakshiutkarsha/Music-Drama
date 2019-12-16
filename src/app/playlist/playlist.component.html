@@ -34,7 +34,7 @@
 
   <div class="each-playlist-cntr" *ngIf="playlists && !isAdmin">
     <p class="playlist-head">OTHERS PLAYLISTS</p>
-    <div class="each-playlist others" *ngFor="let playlist of playlists.otherList" (click)=getSongsFromPlaylist(playlist._id,playlist.title,playlist.description)>
+    <div class="each-playlist others" *ngFor="let playlist of playlists.otherList">
       <p>{{playlist.title}}</p>
       <p>{{playlist.description}}</p>
       <p>Type :{{playlist.is_private == 'true' ? ' Private':' Public'}}</p>

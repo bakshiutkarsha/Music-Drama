@@ -15,6 +15,8 @@ export class CreatePlaylistComponent implements OnInit {
 
   songList: Object;
 
+  disabled = true;
+
   constructor(private _http: HttpService, private modalService: ModalService, private router: Router) { }
 
   ngOnInit() {
@@ -40,6 +42,15 @@ export class CreatePlaylistComponent implements OnInit {
       this.modalService.close('process-modal');
       this.router.navigate(['/playlist']);
     });
+  }
+
+  checkAllValues(){
+    let checks = document.querySelectorAll('input[name=song-id]:checked')
+    if(this.title && checks.length > 0){
+      this.disabled = false;
+    } else {
+      this.disabled = true;
+    }
   }
 
   getAllPlaylists(){

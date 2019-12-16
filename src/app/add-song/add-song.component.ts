@@ -17,6 +17,7 @@ export class AddSongComponent implements OnInit {
   genre: String;
   rating: Number;
   reviewText: String;
+  disabled = true;
 
 
   constructor(private _http: HttpService, private modalService: ModalService, private router: Router) { }
@@ -55,6 +56,14 @@ export class AddSongComponent implements OnInit {
 
     })
 
+  }
+
+  checkAllValues(){
+    if(this.title && this.artist && this.year && this.album && this.genre){
+      this.disabled = false;
+    } else {
+      this.disabled = true;
+    }
   }
 
   openModal(id: string) {

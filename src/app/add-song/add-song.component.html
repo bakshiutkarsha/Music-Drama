@@ -8,33 +8,33 @@
       <p class="head-text">ADD YOUR FAVOURITE SONGS:</p>
       <div class="input-cntr-each">
         <label for="">Title <span>*</span> :</label>
-        <input type="text" name="" id="title" [(ngModel)]="title">
+        <input type="text" name="" id="title" [(ngModel)]="title" (keyup)="checkAllValues()">
       </div>
 
       <div class="input-cntr-each">
         <label for="">Artist <span>*</span> :</label>
-        <input type="text" name="" id="artist" [(ngModel)]="artist">
+        <input type="text" name="" id="artist" [(ngModel)]="artist" (keyup)="checkAllValues()">
       </div>
 
       <div class="divider">
         <div class="input-cntr-each col-width-50">
           <label for="">Year :</label>
-          <input type="number" name="" id="year" [(ngModel)]="year">
+          <input type="number" name="" id="year" [(ngModel)]="year" (keyup)="checkAllValues()">
         </div>
         <div class="input-cntr-each col-width-50">
           <label for="">Album :</label>
-          <input type="text" name="" id="album" [(ngModel)]="album">
+          <input type="text" name="" id="album" [(ngModel)]="album" (keyup)="checkAllValues()">
         </div>
         <div class="input-cntr-each col-width-50">
           <label for="">Genre :</label>
-          <input type="text" name="" id="genre" [(ngModel)]="genre">
+          <input type="text" name="" id="genre" [(ngModel)]="genre" (keyup)="checkAllValues()">
         </div>
       </div>
       <div class="add-btn-cntr">
-        <div class="add-btn" id="add-new-song" (click)="addNewSong()">
+        <div class="add-btn" id="add-new-song" (click)="addNewSong()" [ngClass]="disabled ? 'disabled' : ''">
           ADD SONG
         </div>
-        <div class="add-btn" id="" (click)="openModal('add-review')">
+        <div class="add-btn" id="" (click)="openModal('add-review')" [ngClass]="disabled ? 'disabled' : ''">
           ADD SONG WITH REVIEW
         </div>
       </div>
