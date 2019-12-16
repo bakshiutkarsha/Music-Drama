@@ -11,12 +11,7 @@ export class HttpService {
   currentUser;
 
   constructor(private http: HttpClient) {
-    console.log(this.currentUser == undefined);
-    if(this.currentUser == undefined){
-      Storage.setCollection('USER_DETAILS', {"is_admin":"false", "is_authenticated":"false"});
-    } else {
-      this.currentUser = Storage.getCollection('USER_DETAILS');
-    }
+    this.currentUser = Storage.getCollection('USER_DETAILS');
   }
 
   createHeaderOptions(){
@@ -31,17 +26,23 @@ export class HttpService {
   }
 
   getMethod(url){
-    return this.http.get(url
-    //   {
-    //   headers: this.createHeaderOptions().headers
-    // }
-  );
+    return this.http.get(url, {
+      headers: this.createHeaderOptions().headers
+    });
+  }
+
+  getMethodWithoutHeaders(url){
+    return this.http.get(url);
   }
 
   postMethod(url, data){
     return this.http.post(url, data, {
       headers: this.createHeaderOptions().headers
     });
+  }
+
+  postMethodWithoutHeaders(url, data){
+    return this.http.post(url, data);
   }
 
   deleteMethod(url){
@@ -59,7 +60,7 @@ export class HttpService {
 
 // SONGS PAGE API's
   getAllSongs(){
-    return this.getMethod(URL.getApiUrl().GET_ALL_SONGS);
+    return this.getMethodWithoutHeaders(URL.getUnSecuredApiUrl().GET_ALL_SONGS);
   }
 
   postNewSong(postData){
@@ -67,7 +68,7 @@ export class HttpService {
   }
 
   searchSongs(searchData){
-    return this.postMethod(URL.getApiUrl().SEARCH_SONG, searchData);
+    return this.postMethodWithoutHeaders(URL.getUnSecuredApiUrl().SEARCH_SONG, searchData);
   }
 
   updateSong(songId, postData){
@@ -77,11 +78,12 @@ export class HttpService {
 // REVIEW PAGE API's
 
   getSongReviews(songId) {
-    return this.getMethod(URL.getApiUrl().GET_SONG_REVIEW.replace(':songId', songId));
+    return this.getMethodWithoutHeaders(URL.getUnSecuredApiUrl().GET_SONG_REVIEW.replace(':songId', songId));
   }
 
   postReviewForSong(postData){
     postData.submitted_by = this.currentUser.username;
+    console.log(URL.getApiUrl().CREATE_REVIEW);
     return this.postMethod(URL.getApiUrl().CREATE_REVIEW, postData);
   }
 

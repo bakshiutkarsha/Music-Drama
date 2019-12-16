@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const review =  require('../models/review');
 const song = require('../models/song');
+const middleware = require('../middleware');
+
 
 // GET ALL REVIEW FOR A SONG
 router.get('/getReviewForSong/:songId', async (req, res) => {
@@ -13,18 +15,9 @@ router.get('/getReviewForSong/:songId', async (req, res) => {
   }
 });
 
-//GET SPECIFIC ITEM
-router.get('/items/:itemId', async (req, res) => {
-  try{
-    const item = await lib.findById(req.params.itemId);
-    res.json(item);
-  } catch(err){
-    res.json({message :err});
-  }
-});
 
 //SAVE REVIEW
-router.post('/postReviewForsong', async (req, res) => {
+router.post('/postReviewForsong', middleware.checkToken, async (req, res) => {
   const reviewForExistingUser  = await review.findOne({song_id: req.body.song_id});
   const newReview = new review({
     submitted_by  : req.body.submitted_by,

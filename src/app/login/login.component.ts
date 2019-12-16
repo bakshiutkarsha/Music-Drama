@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
     }
     console.log(postData);
     this._http.authenticateUser(postData).subscribe(data => {
+      data.is_authenticated = 'true';
       Storage.setCollection('USER_DETAILS', data);
       this.errorText ="Successfully Logged In!!";
       this.modalService.close('process-modal');

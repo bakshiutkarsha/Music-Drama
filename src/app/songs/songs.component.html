@@ -7,7 +7,7 @@
       <div class="search-cntr">
         <input type="text" name="" value="" placeholder="Search song, artsit, genre " class="search" [(ngModel)]='searchText'>
         <i class="fa fa-search" (click) = "searchWithKeywords()"></i>
-        <div class="add-song-cntr" routerLink="addSong">
+        <div class="add-song-cntr" routerLink="addSong" *ngIf="currentUser.is_authenticated != 'false'">
           <div class="floating-button-cntr">
             <div class="float-button">
                +
@@ -20,7 +20,7 @@
     <div class="song-list-cntr">
       <div *ngIf="songList">
         <div *ngFor="let song of songList">
-          <div class="each-song" [attr.data-song-id]="song._id" *ngIf="song.is_visible == 'true' || currentUser.is_admin == 'true' ">
+          <div class="each-song" [attr.data-song-id]="song._id" *ngIf="song.is_visible == 'true' || currentUser.is_admin != 'false' ">
             <!-- <div class="img-cntr">
               <img src={{selectRandom()}} alt="">
             </div> -->
@@ -30,7 +30,7 @@
                   <span>BY: {{song.artist}}</span>
                   <span>ALBUM: {{song.album}}</span>
                   <span>GENRE: {{song.genre}}</span>
-                  <span (click)="openModal('open-playlist', song._id)"><i class="fa fa-heart"></i></span>
+                  <span (click)="openModal('open-playlist', song._id)" *ngIf="currentUser.is_authenticated != 'false'"><i class="fa fa-heart"></i></span>
                 </div>
             </div>
 
@@ -45,9 +45,12 @@
                 <p [routerLink]="[song._id, 'review']" class="reviewLink">View Reviews For this Song</p>
               </div>
             </div>
-            <div class="" *ngIf="!song.avg_rating">
-              <p [routerLink]="[song._id, 'review']" class="reviewLink">Give Review For this Song</p>
+            <div class="" *ngIf="currentUser.is_authenticated != 'false'">
+              <div class="" *ngIf="!song.avg_rating">
+                <p [routerLink]="[song._id, 'review']" class="reviewLink">Give Review For this Song</p>
+              </div>
             </div>
+
             <div class="collapsed know-more" (click)="toggleAccordian($event, song._id)" *ngIf="song.avg_rating">
               View Details
             </div>

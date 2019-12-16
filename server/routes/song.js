@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const song = require('../models/song');
+const middleware = require('../middleware');
 
 // GET ALL SONGS
 router.get('/getAllSongs', async (req, res) => {
@@ -33,7 +34,7 @@ router.post('/search', async (req, res) =>{
 
 
 //SAVE NEW SONG
-router.post('/createNewSong', async (req, res) => {
+router.post('/createNewSong', middleware.checkToken, async (req, res) => {
   const newSong = new song({
     submitted_by: req.body.submitted_by,
     submitted_on: req.body.submitted_on,
@@ -58,7 +59,7 @@ router.post('/createNewSong', async (req, res) => {
 
 
 //DELETE AN SONG
-router.delete('/deleteSong/:songId', async (req, res) => {
+router.delete('/deleteSong/:songId', middleware.checkToken, async (req, res) => {
   try {
     const song = await song.remove({
       _id: req.params.songId
@@ -72,7 +73,7 @@ router.delete('/deleteSong/:songId', async (req, res) => {
 });
 
 //UPDATE A SONG
-router.patch('/updateSong/:songId', async (req, res) => {
+router.patch('/updateSong/:songId', middleware.checkToken, async (req, res) => {
   try {
     const updatedSong = await song.updateMany({_id: req.params.songId}, {$set: req.body });
     res.json(updatedSong);

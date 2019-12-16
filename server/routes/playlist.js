@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Playlist =  require('../models/playlist');
 const Song =  require('../models/song');
+const middleware = require('../middleware');
 
 
-router.post('/createNewPlaylist', async (req, res) => {
+router.post('/createNewPlaylist', middleware.checkToken, async (req, res) => {
   const newPlaylist = new Playlist({
     title: req.body.title,
     song_ids:req.body.song_ids,
@@ -24,7 +25,7 @@ router.post('/createNewPlaylist', async (req, res) => {
 
 });
 
-router.post('/updatePlaylistSong', async (req, res) => {
+router.post('/updatePlaylistSong', middleware.checkToken, async (req, res) => {
   try{
     const playlist = await Playlist.findByIdAndUpdate(req.body.playlistId, {$addToSet: { "song_ids": req.body.song_ids } }, {safe: true});
     res.json(playlist);
@@ -35,7 +36,7 @@ router.post('/updatePlaylistSong', async (req, res) => {
 
 });
 
-router.get('/getSongsForPlaylist/:playlistId', async (req, res) => {
+router.get('/getSongsForPlaylist/:playlistId', middleware.checkToken, async (req, res) => {
   try{
     let songArray = []
     const playlist = await Playlist.findOne({_id: req.params.playlistId});
@@ -50,7 +51,7 @@ router.get('/getSongsForPlaylist/:playlistId', async (req, res) => {
 
 });
 
-router.delete('/deleteFromPlaylist/:playlistId/:songId', async (req, res) => {
+router.delete('/deleteFromPlaylist/:playlistId/:songId', middleware.checkToken, async (req, res) => {
   try{
     const playlist = await Playlist.update( {_id: req.params.playlistId}, { $pullAll: {song_ids: [req.params.songId] } } )
     res.json(playlist);
@@ -60,7 +61,7 @@ router.delete('/deleteFromPlaylist/:playlistId/:songId', async (req, res) => {
 
 });
 
-router.get('/getAllPlaylists', async (req, res) => {
+router.get('/getAllPlaylists', middleware.checkToken, async (req, res) => {
   try{
     const playlist = await Playlist.find();
     res.json(playlist);
@@ -70,7 +71,7 @@ router.get('/getAllPlaylists', async (req, res) => {
 
 });
 
-router.get('/getFilteredPlaylist/:userId', async (req, res) => {
+router.get('/getFilteredPlaylist/:userId', middleware.checkToken, async (req, res) => {
   let playlistFilterArr= [];
   let userSpecificList = [];
   const userId = req.params.userId;
@@ -90,7 +91,7 @@ router.get('/getFilteredPlaylist/:userId', async (req, res) => {
   }
 });
 
-router.patch('/updatePlaylist/:playlistId', async (req, res) => {
+router.patch('/updatePlaylist/:playlistId', middleware.checkToken, async (req, res) => {
   try{
     const item = await Playlist.findOneAndUpdate({_id: req.params.playlistId}, {$set: req.body });
     res.json(item);
@@ -99,7 +100,7 @@ router.patch('/updatePlaylist/:playlistId', async (req, res) => {
   }
 });
 
-router.delete('/deletePlaylist/:playlistId', async (req, res) => {
+router.delete('/deletePlaylist/:playlistId', middleware.checkToken, async (req, res) => {
   try{
     const selectedPlaylist = await Playlist.remove({_id: req.params.playlistId});
     res.json(selectedPlaylist);

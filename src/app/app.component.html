@@ -5,7 +5,7 @@
   <div class="right-portion">
     <p routerLink=""> About</p>
     <p routerLink="songs">Songs</p>
-    <p routerLink="playlist"> Playlist</p>
+    <p routerLink="playlist" *ngIf="isAuthenticated"> Playlist</p>
     <p routerLink="admin/users" *ngIf="isAdmin"> Users</p>
     <p class="login" routerLink="login" (loginUserHead)='changeToUserName($event)'> {{currentUserName ? currentUserName : 'Login/Register'}}</p>
   </div>

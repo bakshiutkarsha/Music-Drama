@@ -11,12 +11,26 @@ export class AppComponent implements OnInit{
   title = 'ece9065-ubakshi2-lab5';
   isAdmin;
   currentUserName;
+  isAuthenticated;
 
   ngOnInit() {
+    this.checkForAuthentication();
     this.isAdmin = Utils.isUserAdmin();
     let userDetails = Storage.getCollection('USER_DETAILS');
-    if(userDetails){
+    if(userDetails && userDetails.username){
       this.currentUserName = userDetails.username;
+    } else {
+      this.isAuthenticated = false
+    }
+  }
+
+  checkForAuthentication(){
+    let userDetail = Storage.getCollection('USER_DETAILS');
+    console.log(userDetail == undefined)
+    if(userDetail == null){
+      Storage.setCollection('USER_DETAILS', {"is_admin":"false", "is_authenticated":"false"});
+    } else {
+      Storage.setCollection('USER_DETAILS', userDetail);
     }
   }
 

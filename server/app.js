@@ -36,7 +36,7 @@ app.use('/auth', authRoute);
 // securedRoutes.use(/* auth-middleware from above */)
 // securedRoutes.get('path1', /* ... */)
 // const ProtectedRoutes = express.Router();
-app.use('/api', middleware.checkToken);
+// app.use('/api', middleware.checkToken);
 
 // app.use('/', middleware.checkToken);
 app.use('/reviews', reviewRoute);
