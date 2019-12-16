@@ -1,6 +1,9 @@
 import { Component, OnInit,  EventEmitter, Output } from '@angular/core';
 import { HttpService } from '../http.service';
 import Storage from '../common/webStorage';
+import { ModalService } from '../modal/modal.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -13,15 +16,18 @@ export class LoginComponent implements OnInit {
 
   password: String;
 
+  errorText: String;
+
   @Output() loginUserHead = new EventEmitter();
 
 
-  constructor(private _http: HttpService) { }
+  constructor(private _http: HttpService, private modalService: ModalService, private router: Router) { }
 
   ngOnInit() {
   }
 
   loginUser(){
+    this.modalService.open('process-modal');
     let postData = {
       "username"  : this.email,
       "password"  : this.password
@@ -29,10 +35,16 @@ export class LoginComponent implements OnInit {
     console.log(postData);
     this._http.authenticateUser(postData).subscribe(data => {
       Storage.setCollection('USER_DETAILS', data);
-      // this.loginUserHead.emit(data);
+      this.errorText ="Successfully Logged In!!";
+      this.modalService.close('process-modal');
+      this.modalService.open('callback-modal');
+      this.router.navigate(['/']);
+
       console.log(data);
     }, (err)=>{
-      // this.loginUserHead.emit(err);
+        this.errorText = err.error.message;
+        this.modalService.close('process-modal');
+        this.modalService.open('callback-modal');
     })
   }
 }

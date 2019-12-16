@@ -8,7 +8,7 @@
     </div>
 
       <div class="rTableRow" *ngFor ="let user of users" >
-        <div class="rTableCell">{{user.email}}</div>
+        <div class="rTableCell">{{user.username}}</div>
         <div class="rTableCell">{{user.is_admin == 'true' ? 'Admin':'User'}}</div>
         <div class="rTableCell"><p [className]="user.is_active == 'true' ? 'active' : 'deactivate'"></p>{{user.is_active == 'true' ? 'Active' : 'Not Active'}}</div>
         <div class="rTableCell">

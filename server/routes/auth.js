@@ -6,7 +6,9 @@ const Promise = require("bluebird");
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const redirect = require('./redirect');
+const Redirect = require('./redirect');
+require('dotenv/config');
+const authKey = process.env.SECRET_KEY;
 require('dotenv/config');
 
 
@@ -65,7 +67,7 @@ router.post('/validate', async (req, res) => {
           'is_admin': userDetails.is_admin
         });
       } else {
-        res.sendStatus(400).json({
+        res.status(400).send({
           message: "Password don't Match"
         });
       }
@@ -75,7 +77,7 @@ router.post('/validate', async (req, res) => {
       });
     }
   } else {
-    res.json({
+    res.status(400).send({
       message: "Your account has been deactivated. Please contact the site administrator"
     });
   }
@@ -113,18 +115,29 @@ router.patch('/updateUserDeatils/:userId', async (req, res) => {
   }
 })
 
+Redirect.getPassport(passport);
+router.use(passport.initialize());
 
 router.get('/google', passport.authenticate('google', {
   scope: [
     'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/userinfo.email'
   ]
-}))
+}));
 
-router.get('/google/callback', passport.authenticate('google', {
+router.get('/api/redirect', passport.authenticate('google', {
   failureRedirect: '/user'
-}), function() {
-  console.log('here');
+}),function(req, res){
+  let payload = { username: Redirect.getEmail(), "admin": false };
+  let jwttoken = jwt.sign(payload, authKey);
+
+  // let encodedJwt = base64(jwttoken);
+  console.log(res);
+  //res.cookie('token', encodedJwt);
+  response.writeHead(301,
+  {Location: 'http:localhost:4200/'}
+) ;
 });
+
 
 module.exports = router;
