@@ -3,7 +3,7 @@
     <p>Sign In </p>
     <div class="details">
       <div class="input-cntr">
-        <input type="email" placeholder="Email" maxlength="20" id="email" [(ngModel)]="email" (keyup)="validateEmail()">
+        <input type="email" placeholder="Email" id="email" [(ngModel)]="email" (keyup)="validateEmail()">
         <div class="error" *ngIf="emailErrorText">*Please enter the valid email</div>
       </div>
 
@@ -13,6 +13,10 @@
 
       <div class="checkout" id="login" (click)=loginUser() [ngClass]="disabled ? 'disabled' : ''">
         Log in
+      </div>
+
+      <div class="checkout" id="login" (click)=registerUser() [ngClass]="disabled ? 'disabled' : ''">
+        Register
       </div>
     </div>
   </div>

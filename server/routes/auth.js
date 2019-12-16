@@ -7,10 +7,19 @@ const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const Redirect = require('./redirect');
+var nodemailer = require("nodemailer");
 require('dotenv/config');
 const authKey = process.env.SECRET_KEY;
 
+var smtpTransport = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "musicateuphonic@gmail.com",
+        pass: "musicateuphonic123"
+    }
+});
 
+var rand,mailOptions,host,link,usr;
 //Creating User with Hashed Password
 router.post('/new', async (req, res) => {
   const userDetails = await user.findOne({
@@ -29,6 +38,25 @@ router.post('/new', async (req, res) => {
         hash: hash
       })
       const savedUser = await newUser.save();
+       rand=Math.floor((Math.random() * 100) + 54);
+       host=req.get('host');
+       link="http://localhost:3000/auth/verify?user="+savedUser._id+"&id="+rand;
+       mailOptions={
+           from: 'Do Not Reply <musicateuphonic_do_not_reply@gmail.com>',
+           to : req.body.username,
+           subject : "Please confirm your Email account",
+           html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>"
+       }
+       console.log(mailOptions);
+       smtpTransport.sendMail(mailOptions, function(error, response){
+       if(error){
+           console.log(error);
+           res.status(400).send(error);
+       }else{
+           console.log("Message sent");
+           res.json({user: usr._id});
+           }
+       });
       res.json({
         user: newUser,
         message: 'succesfully saved the user info'
@@ -113,30 +141,49 @@ router.patch('/updateUserDeatils/:userId', async (req, res) => {
   }
 })
 
+//Verify Users
+router.get('/verify', async (req,res) =>{
+    console.log(req.protocol+":/"+req.get('host'));
+    if((req.protocol+"://"+req.get('host'))==("http://"+host))
+    {
+        console.log("Domain is matched. Information is from Authentic email");
+        console.log(req.query.id);
+        console.log(req.query.user);
+        if(req.query.id==rand)
+        {
+            console.log("email is verified");
+            const create =  await user.findOneAndUpdate({_id : req.query.user },{$set: {is_verified: true}});
+            res.set('location', 'http://localhost:4200/login');
+            res.status(301).send()
+            // res.send("Email verified, you can login now..")
+        }
+        else
+        {
+            console.log("email is not verified");
+            res.status(400).send('email is not verified');
+        }
+    }
+    else
+    {
+        res.status(400).send('Request is from unknown source');
+    }
+});
+
 //Passport for google verification and redirection
-Redirect.getPassport(passport);
+Redirect(passport);
 router.use(passport.initialize());
 
-router.get('/google', passport.authenticate('google', {
+router.get('/auth/google', passport.authenticate('google', {
   scope: [
     'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/userinfo.email'
   ]
 }));
 
-router.get('/api/redirect', passport.authenticate('google', {
-  failureRedirect: '/user'
-}),function(req, res){
-  let payload = { username: Redirect.getEmail(), "admin": false };
-  let jwttoken = jwt.sign(payload, authKey);
+router.get('/auth/google/callback', passport.authenticate('google', {
+  failureRedirect: '/auth'
+}),Redirect.google_authenticate);
 
-  // let encodedJwt = base64(jwttoken);
-  console.log(res);
-  //res.cookie('token', encodedJwt);
-  response.writeHead(301,
-  {Location: 'http:localhost:4200/'}
-) ;
-});
 
 
 module.exports = router;

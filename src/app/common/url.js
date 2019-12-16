@@ -1,13 +1,14 @@
 import Storage from './webStorage'
 
-const BASE_SECURED_URL = 'http://localhost:3000';
-
-const BASE_UNSECURED_URL = 'http://localhost:3000';
+const BASE_URL = 'http://localhost:3000';
 
 const API_URLS =  {
   CREATE_SONG:  ':BASE_URL:/songs/createNewSong',
   UPDATE_SONG:  ':BASE_URL:/songs/updateSong/:songId',
+  GET_ALL_SONGS:   ':BASE_URL:/songs/getAllSongs',
+  SEARCH_SONG:  ':BASE_URL:/songs/search',
 
+  GET_SONG_REVIEW:   ':BASE_URL:/reviews/getReviewForSong/:songId',
   CREATE_REVIEW:  ':BASE_URL:/reviews/postReviewForsong',
   GET_RECENT_REVIEW: ':BASE_URL:/reviews/getCountAndMostRecentReview/:songId',
 
@@ -25,27 +26,13 @@ const API_URLS =  {
   DELETE_PLAYLIST: ':BASE_URL:/playlist/deletePlaylist/:playlistId',
 }
 
-const UNSECURED_API_URLS = {
-  GET_ALL_SONGS:   ':BASE_URL:/songs/getAllSongs',
-  SEARCH_SONG:  ':BASE_URL:/songs/search',
-  GET_SONG_REVIEW:   ':BASE_URL:/reviews/getReviewForSong/:songId'
-}
-
 function getApiUrl() {
   for (var prop in API_URLS) {
-    API_URLS[prop] = API_URLS[prop].replace(':BASE_URL:', BASE_SECURED_URL);
+    API_URLS[prop] = API_URLS[prop].replace(':BASE_URL:', BASE_URL);
   }
   return API_URLS;
 }
 
-function getUnSecuredApiUrl() {
-  for (var prop in UNSECURED_API_URLS) {
-    UNSECURED_API_URLS[prop] = UNSECURED_API_URLS[prop].replace(':BASE_URL:', BASE_UNSECURED_URL);
-  }
-  return UNSECURED_API_URLS;
-}
-
 export default{
-  getApiUrl: getApiUrl,
-  getUnSecuredApiUrl: getUnSecuredApiUrl
+  getApiUrl: getApiUrl
 }

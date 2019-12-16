@@ -26,8 +26,7 @@ export class AppComponent implements OnInit{
 
   checkForAuthentication(){
     let userDetail = Storage.getCollection('USER_DETAILS');
-    console.log(userDetail == undefined)
-    if(userDetail == null){
+    if(userDetail == undefined){
       Storage.setCollection('USER_DETAILS', {"is_admin":"false", "is_authenticated":"false"});
     } else {
       Storage.setCollection('USER_DETAILS', userDetail);

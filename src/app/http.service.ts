@@ -60,7 +60,7 @@ export class HttpService {
 
 // SONGS PAGE API's
   getAllSongs(){
-    return this.getMethodWithoutHeaders(URL.getUnSecuredApiUrl().GET_ALL_SONGS);
+    return this.getMethodWithoutHeaders(URL.getApiUrl().GET_ALL_SONGS);
   }
 
   postNewSong(postData){
@@ -68,7 +68,7 @@ export class HttpService {
   }
 
   searchSongs(searchData){
-    return this.postMethodWithoutHeaders(URL.getUnSecuredApiUrl().SEARCH_SONG, searchData);
+    return this.postMethodWithoutHeaders(URL.getApiUrl().SEARCH_SONG, searchData);
   }
 
   updateSong(songId, postData){
@@ -78,7 +78,7 @@ export class HttpService {
 // REVIEW PAGE API's
 
   getSongReviews(songId) {
-    return this.getMethodWithoutHeaders(URL.getUnSecuredApiUrl().GET_SONG_REVIEW.replace(':songId', songId));
+    return this.getMethodWithoutHeaders(URL.getApiUrl().GET_SONG_REVIEW.replace(':songId', songId));
   }
 
   postReviewForSong(postData){
@@ -101,6 +101,10 @@ export class HttpService {
 
   upadetUser(userId, postData){
     return this.patchMethod(URL.getApiUrl().UPDATE_USER.replace(':userId', userId), postData);
+  }
+
+  registerUser(postData){
+    return this.postMethod(URL.getApiUrl().REGISTER_USER, postData);
   }
 
 //  PLAYLIST API's
