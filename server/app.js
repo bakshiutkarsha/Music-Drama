@@ -9,7 +9,6 @@ const playlistRoute = require('./routes/playlist');
 const cors = require('cors');
 const path = require('path');
 const middleware = require('./middleware');
-const securedRoutes = require('express').Router()
 require('dotenv/config');
 const authKey = process.env.SECRET_KEY;
 
@@ -36,8 +35,10 @@ app.use('/auth', authRoute);
 
 // securedRoutes.use(/* auth-middleware from above */)
 // securedRoutes.get('path1', /* ... */)
+// const ProtectedRoutes = express.Router();
+app.use('/api', middleware.checkToken);
 
-app.use('/', middleware.checkToken);
+// app.use('/', middleware.checkToken);
 app.use('/reviews', reviewRoute);
 app.use('/songs', songRoute);
 app.use('/playlist', playlistRoute);

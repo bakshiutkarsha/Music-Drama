@@ -16,8 +16,8 @@ function getPassport(passport){
             callbackURL: 'http://localhost:3000/auth/api/redirect'
         },
         (token, refreshToken, profile, done) => {
-           console.log(profile.emails[0].value);
-           email=profile.emails[0].value;
+           console.log(profile.username[0].value);
+           email=profile.username[0].value;
             return done(null, {
                 profile: profile,
                 token: token

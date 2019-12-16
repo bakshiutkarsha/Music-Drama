@@ -9,7 +9,6 @@ const passport = require('passport');
 const Redirect = require('./redirect');
 require('dotenv/config');
 const authKey = process.env.SECRET_KEY;
-require('dotenv/config');
 
 
 //Creating User with Hashed Password
@@ -27,7 +26,6 @@ router.post('/new', async (req, res) => {
       const newUser = new user({
         username: req.body.username,
         password: req.body.password,
-        email: req.body.email,
         hash: hash
       })
       const savedUser = await newUser.save();
@@ -63,7 +61,7 @@ router.post('/validate', async (req, res) => {
         res.json({
           "token": token,
           "userId": userDetails._id,
-          "email": req.body.username,
+          "username": req.body.username,
           'is_admin': userDetails.is_admin
         });
       } else {
@@ -115,6 +113,7 @@ router.patch('/updateUserDeatils/:userId', async (req, res) => {
   }
 })
 
+//Passport for google verification and redirection
 Redirect.getPassport(passport);
 router.use(passport.initialize());
 
