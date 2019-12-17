@@ -24,9 +24,7 @@ function Passport(passport){
             callbackURL: 'http://localhost:3000/passport/auth/google/callback'
         },
         (token, refreshToken, profile, done) => {
-            console.log('here')
-           console.log(profile.email);
-           email=profile.email;
+           email=profile.emails[0].value;
             return done(null, {
                 profile: profile,
                 token: token
@@ -36,20 +34,16 @@ function Passport(passport){
         ));
 };
 
-function getEmail() {
-    return email;
-};
 
 function google_authenticate(req, res, next){
   let payload = { username: email, "admin": false };
   let jwttoken = jwt.sign(payload, authKey);
 
-  const user = Auth.findOne({username: email});
   res.cookie('token', jwttoken);
-  res.redirect(`http://localhost:4200/?fromGoogle`);
+  res.cookie('username', email);
+  res.redirect(`http://localhost:4200`);
 }
 
-module.exports.getEmail = getEmail;
 module.exports.google_authenticate = google_authenticate;
 
 

@@ -17,6 +17,7 @@ const API_URLS =  {
   REGISTER_USER: ':BASE_URL:/auth/new',
   RESEND_EMAIL:':BASE_URL:/auth/resend/:username',
   UPDATE_USER: ':BASE_URL:/auth/updateUserDeatils/:userId',
+  GET_CURRENT_USER: ':BASE_URL:/auth/getUser/:username',
 
 
   CREATE_PLAYLIST: ':BASE_URL:/playlist/createNewPlaylist',

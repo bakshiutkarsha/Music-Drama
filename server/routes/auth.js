@@ -134,6 +134,21 @@ router.post('/validate', async (req, res) => {
       }
     })
 
+    //Get One User
+    router.get('/getUser/:username', async (req, res) => {
+      try {
+        const item = await user.findOne({username: req.params.username}, {
+          password: 0,
+          hash: 0
+        });
+        res.json(item);
+      } catch (err) {
+        res.json({
+          message: err
+        });
+      }
+    })
+
     //Make user admin or deactivate the account
     router.patch('/updateUserDeatils/:userId', async (req, res) => {
       try {

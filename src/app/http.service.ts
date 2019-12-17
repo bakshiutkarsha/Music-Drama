@@ -110,6 +110,18 @@ export class HttpService {
     return this.getMethod(URL.getApiUrl().RESEND_EMAIL.replace(':username', username));
   }
 
+  getCurrentUserDetails(tokenFromCookie, username){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${tokenFromCookie}`
+      })
+    };
+    return this.http.get(URL.getApiUrl().GET_CURRENT_USER.replace(':username', username), {
+      headers: httpOptions.headers
+    });
+  }
+
 //  PLAYLIST API's
 
   getAllPlaylists(){
