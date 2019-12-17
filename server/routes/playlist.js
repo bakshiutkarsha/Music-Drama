@@ -7,6 +7,7 @@ const middleware = require('../middleware');
 
 //CREATE NEW PLAYLIST
 router.post('/createNewPlaylist', middleware.checkToken, async (req, res) => {
+  console.log('added comment')
   const newPlaylist = new Playlist({
     title: req.body.title,
     song_ids:req.body.song_ids,
