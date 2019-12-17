@@ -2,7 +2,7 @@ let jwt = require('jsonwebtoken');
 require('dotenv/config');
 const authKey = process.env.SECRET_KEY;
 
-
+//checking token for each secured api
 let checkToken = (req, res, next) => {
   let token = req.headers['authorization'];
   token = token.split(' ');

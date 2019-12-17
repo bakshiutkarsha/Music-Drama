@@ -53,26 +53,6 @@ router.post('/postReviewForsong', middleware.checkToken, async (req, res) => {
 
 });
 
-//DELETE AN ITEM
-// router.delete('/items/:itemId', async (req, res) => {
-//   try{
-//     const item = await lib.remove({_id: req.params.itemId});
-//     res.json(item);
-//   } catch(err){
-//     res.json({message :err});
-//   }
-// });
-//
-// //UPDATE AN ITEM
-// router.patch('/items/:itemId', async (req, res) => {
-//   console.log(req.body);
-//   try{
-//     const item = await lib.updateMany({_id: req.params.itemId}, {$set: req.body });
-//     res.json(item);
-//   } catch(err){
-//     res.json({message :err});
-//   }
-// });
 
 //GET RECENT REVIEW
 router.get('/getCountAndMostRecentReview/:songId', async (req, res) => {
