@@ -3,6 +3,8 @@ import { HttpService } from '../http.service';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService } from '../modal/modal.service';
 import Storage from '../common/webStorage';
+import { Router } from '@angular/router';
+
 import * as moment from 'moment';
 
 @Component({
@@ -26,7 +28,7 @@ export class SongsComponent implements OnInit {
 
   isVisible;
 
-  constructor(private _http: HttpService, private route: ActivatedRoute, private modalService: ModalService) { }
+  constructor(private _http: HttpService, private router: Router, private modalService: ModalService) { }
 
 
   ngOnInit() {
@@ -90,13 +92,20 @@ export class SongsComponent implements OnInit {
   }
 
   addSongToPlaylist(id){
+    this.modalService.close('open-playlist');
+    this.modalService.open('process-modal');
     let req = {
        "song_ids":[this.selectedSongId],
 	     "playlistId": id
     }
     this._http.addSongToPlaylist(req).subscribe(data => {
       this.playlists = data;
+      this.modalService.close('process-modal');
     });
+  }
+
+  createPlaylist(){
+    this.router.navigate(['/playlist']);
   }
 
   openModal(id: string, songId) {

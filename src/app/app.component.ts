@@ -46,6 +46,8 @@ export class AppComponent implements OnInit{
 
       this._http.getCurrentUserDetails(token, username).subscribe(data => {
         data['token'] = token;
+        data['is_authenticated'] = 'true';
+        data['userId'] = data['_id'];
         Storage.setCollection('USER_DETAILS', data);
         this.deleteAllCookies()
       })
