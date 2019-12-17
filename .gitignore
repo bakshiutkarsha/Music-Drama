@@ -48,3 +48,4 @@ Thumbs.db
 
 #server
 /server/password.js
+/server/node_modules
