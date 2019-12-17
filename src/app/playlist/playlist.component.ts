@@ -83,7 +83,7 @@ export class PlaylistComponent implements OnInit {
     this.modalService.close('edit-playlist');
     this.modalService.open('process-modal');
     let radioInp = document.querySelector('input[name="type"]:checked') as HTMLInputElement;
-    console.log(radioInp)
+    
     let postData = {
       title: this.editedName,
       description:this.editedDescription,

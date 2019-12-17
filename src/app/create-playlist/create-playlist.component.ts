@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { ModalService } from '../modal/modal.service';
 import { Router } from '@angular/router';
+import Utils from '../common/utils';
 
 @Component({
   selector: 'app-create-playlist',
@@ -23,16 +24,6 @@ export class CreatePlaylistComponent implements OnInit {
     this.getAllPlaylists();
   }
 
-  sanitizeString(unsafe) {
-      return unsafe
-           .replace(/&<>"=\/'./g, "")
-           .replace(/</g, "")
-           .replace(/>/g, "")
-           .replace(/"/g, "")
-           .replace(/=/g, "")
-           .replace(/\//ig,"")
-           .replace(/'/g, "");
-   }
 
   createNewPlaylist(){
     this.modalService.open('process-modal');
@@ -43,10 +34,13 @@ export class CreatePlaylistComponent implements OnInit {
       songIDArray.push(checkboxInp[i].id);
     }
 
+    let title = Utils.sanitizeString(this.title);
+    let description = Utils.sanitizeString(this.description);
+
     let postData = {
-      "title": this.sanitizeString(this.title),
+      "title": title,
       "song_ids": songIDArray,
-      "description": this.sanitizeString(this.description)
+      "description": description
     }
     console.log(postData)
     this._http.createPlaylist(postData).subscribe(data => {

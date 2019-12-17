@@ -8,5 +8,16 @@ export default{
     } else {
       return false;
     }
-  }
+  },
+
+  sanitizeString(unsafe) {
+      return unsafe
+           .replace(/&<>"=\/'./g, "")
+           .replace(/</g, "")
+           .replace(/>/g, "")
+           .replace(/"/g, "")
+           .replace(/=/g, "")
+           .replace(/\//ig,"")
+           .replace(/'/g, "");
+   }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { ModalService } from '../modal/modal.service';
 import { Router } from '@angular/router';
+import Utils from '../common/utils';
+
 
 
 @Component({
@@ -25,26 +27,21 @@ export class AddSongComponent implements OnInit {
 
   }
 
-  sanitizeString(unsafe) {
-      return unsafe
-           .replace(/&<>"=\/'./g, "")
-           .replace(/</g, "")
-           .replace(/>/g, "")
-           .replace(/"/g, "")
-           .replace(/=/g, "")
-           .replace(/\//ig,"")
-           .replace(/'/g, "");
-   }
-
   addNewSong() {
     this.modalService.close('add-review');
     this.modalService.open('process-modal');
+    let title = Utils.sanitizeString(this.title);
+    let artist = Utils.sanitizeString(this.artist);
+    let album = Utils.sanitizeString(this.album);
+    let year = Utils.sanitizeString(this.year);
+    let genre = Utils.sanitizeString(this.genre);
+
     let postData = {
-      "song_title": this.title,
-      "artist": this.artist,
-      "album": this.album,
-      "year": this.year,
-      "genre": this.genre
+      "song_title": title,
+      "artist": artist,
+      "album": album,
+      "year": year,
+      "genre": genre
     }
     this._http.postNewSong(postData).subscribe(data => {
       if (this.rating) {
